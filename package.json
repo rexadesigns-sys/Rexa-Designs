@@ -1,0 +1,11 @@
+{
+  "name": "rexa-designs-wrapper",
+  "version": "1.0.0",
+  "description": "Wrapper to redirect to the actual project folder",
+  "scripts": {
+    "preinstall": "cd Rexa-Designs-main && npm install",
+    "dev": "cd Rexa-Designs-main && npm run dev",
+    "build": "cd Rexa-Designs-main && npm run build",
+    "start": "cd Rexa-Designs-main && npm start"
+  }
+}
