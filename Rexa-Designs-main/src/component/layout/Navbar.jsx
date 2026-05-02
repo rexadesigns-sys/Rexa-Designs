@@ -17,9 +17,10 @@ export default function Navbar({
           to="/"
           className="flex items-center"
           aria-label="Graphics.lk home"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <img
-            src="/images/logo.svg"
+            src="/images/Rexa Designs Logo.svg"
             alt="Graphics.lk"
             className="h-10 w-auto"
           />
