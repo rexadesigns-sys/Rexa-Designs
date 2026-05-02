@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { 
-  LayoutDashboard, 
-  Briefcase, 
-  MessageSquare, 
-  Settings, 
-  Users, 
+import {
+  LayoutDashboard,
+  Briefcase,
+  MessageSquare,
+  Settings,
+  Users,
   Menu,
   X,
   Bell,
@@ -125,7 +125,7 @@ export default function AdminPanel() {
 
     setPublishStatus({ type: 'success', message: `Testimonial added successfully!` });
     setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
-    
+
     setTestName('');
     setTestRating(5);
     setTestContent('');
@@ -175,7 +175,7 @@ export default function AdminPanel() {
 
     setPublishStatus({ type: 'success', message: `Project added successfully!` });
     setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
-    
+
     setProjTopic('');
     setProjCategory('Logo Designs');
     setProjImage(null);
@@ -242,7 +242,7 @@ export default function AdminPanel() {
     };
 
     const existingPosts = JSON.parse(localStorage.getItem('customBlogPosts')) || [];
-    
+
     try {
       localStorage.setItem('customBlogPosts', JSON.stringify([newPost, ...existingPosts]));
     } catch (e) {
@@ -253,7 +253,7 @@ export default function AdminPanel() {
 
     setPublishStatus({ type: 'success', message: `Successfully published: ${blogTopic}` });
     setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
-    
+
     // Reset form
     setBlogTopic('');
     setBlogAuthor('');
@@ -348,7 +348,7 @@ export default function AdminPanel() {
           </h1>
           {!isSidebarOpen && <span className="font-bold text-xl absolute">RA</span>}
         </div>
-        
+
         <nav className="flex-1 py-6 flex flex-col gap-2 px-3">
           {navigation.map((item) => {
             const Icon = item.icon;
@@ -356,11 +356,10 @@ export default function AdminPanel() {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-colors ${
-                  activeTab === item.id 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                } ${!isSidebarOpen && 'justify-center'}`}
+                className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-colors ${activeTab === item.id
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                  } ${!isSidebarOpen && 'justify-center'}`}
                 title={!isSidebarOpen ? item.name : ''}
               >
                 <Icon size={20} />
@@ -373,7 +372,7 @@ export default function AdminPanel() {
         </nav>
 
         <div className="p-4 border-t border-slate-800">
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-3 text-slate-400 hover:text-white w-full px-3 py-2"
           >
@@ -388,7 +387,7 @@ export default function AdminPanel() {
         {/* Top Header */}
         <header className="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="text-gray-500 hover:text-gray-700 hidden md:block"
             >
@@ -396,9 +395,9 @@ export default function AdminPanel() {
             </button>
             <div className="relative hidden sm:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-              <input 
-                type="text" 
-                placeholder="Search..." 
+              <input
+                type="text"
+                placeholder="Search..."
                 className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
               />
             </div>
@@ -425,7 +424,7 @@ export default function AdminPanel() {
         <main className="flex-1 overflow-y-auto p-6 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 capitalize">{activeTab}</h2>
-            
+
             {activeTab === 'dashboard' && (
               <div className="space-y-6">
                 {/* Stats Cards */}
@@ -452,322 +451,322 @@ export default function AdminPanel() {
 
             {activeTab === 'blog' && (
               <>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-xl font-bold text-gray-800">Add New Blog Post</h3>
-                  <div className="flex items-center gap-4">
-                    {publishStatus.message && (
-                      <span className={`text-sm font-medium ${publishStatus.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
-                        {publishStatus.message}
-                      </span>
-                    )}
-                    <button 
-                      type="button"
-                      onClick={handlePublish}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      Publish Post
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Topic / Title</label>
-                      <input 
-                        type="text" 
-                        placeholder="Enter blog topic..." 
-                        value={blogTopic}
-                        onChange={(e) => setBlogTopic(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Author</label>
-                      <input 
-                        type="text" 
-                        placeholder="Enter author name..." 
-                        value={blogAuthor}
-                        onChange={(e) => setBlogAuthor(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
-                    <div 
-                      className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition-colors cursor-pointer"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      <input 
-                        type="file" 
-                        ref={fileInputRef} 
-                        className="hidden" 
-                        accept=".jpg,.jpeg,.png,.webp,.avif" 
-                        onChange={handleImageChange}
-                      />
-                      {blogImagePreview ? (
-                        <div className="relative w-full h-48 overflow-hidden rounded-lg">
-                          <img src={blogImagePreview} alt="Preview" className="w-full h-full object-cover" />
-                        </div>
-                      ) : (
-                        <>
-                          <FileText className="mx-auto h-10 w-10 text-gray-400 mb-3" />
-                          <p className="text-sm text-gray-600"><span className="text-blue-600 font-medium">Click to upload</span> or drag and drop</p>
-                          <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP, AVIF up to 10MB</p>
-                        </>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-xl font-bold text-gray-800">Add New Blog Post</h3>
+                    <div className="flex items-center gap-4">
+                      {publishStatus.message && (
+                        <span className={`text-sm font-medium ${publishStatus.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
+                          {publishStatus.message}
+                        </span>
                       )}
+                      <button
+                        type="button"
+                        onClick={handlePublish}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      >
+                        Publish Post
+                      </button>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
-                    <textarea 
-                      rows="8" 
-                      placeholder="Write your blog content here..." 
-                      value={blogContent}
-                      onChange={(e) => setBlogContent(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 resize-none"
-                    ></textarea>
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Topic / Title</label>
+                        <input
+                          type="text"
+                          placeholder="Enter blog topic..."
+                          value={blogTopic}
+                          onChange={(e) => setBlogTopic(e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Author</label>
+                        <input
+                          type="text"
+                          placeholder="Enter author name..."
+                          value={blogAuthor}
+                          onChange={(e) => setBlogAuthor(e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
+                      <div
+                        className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition-colors cursor-pointer"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          className="hidden"
+                          accept=".jpg,.jpeg,.png,.webp,.avif"
+                          onChange={handleImageChange}
+                        />
+                        {blogImagePreview ? (
+                          <div className="relative w-full h-48 overflow-hidden rounded-lg">
+                            <img src={blogImagePreview} alt="Preview" className="w-full h-full object-cover" />
+                          </div>
+                        ) : (
+                          <>
+                            <FileText className="mx-auto h-10 w-10 text-gray-400 mb-3" />
+                            <p className="text-sm text-gray-600"><span className="text-blue-600 font-medium">Click to upload</span> or drag and drop</p>
+                            <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP, AVIF up to 10MB</p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                      <textarea
+                        rows="8"
+                        placeholder="Write your blog content here..."
+                        value={blogContent}
+                        onChange={(e) => setBlogContent(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 resize-none"
+                      ></textarea>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Posts</h3>
-                <div className="space-y-4">
-                  {(() => {
-                    const activeStatic = blogPosts.filter(p => !deletedStaticPosts.includes(p.id));
-                    const all = [...customPosts, ...activeStatic];
-                    if (all.length === 0) {
-                      return <p className="text-gray-500 text-center py-4">No posts found.</p>;
-                    }
-                    return all.map((post) => (
-                      <div key={post.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-4">
-                          <img src={post.img} alt={post.title} className="w-16 h-16 object-cover rounded-md" />
-                          <div>
-                            <h4 className="font-bold text-gray-900 line-clamp-1">{post.title}</h4>
-                            <p className="text-sm text-gray-500">By {post.author} • {post.date}</p>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Posts</h3>
+                  <div className="space-y-4">
+                    {(() => {
+                      const activeStatic = blogPosts.filter(p => !deletedStaticPosts.includes(p.id));
+                      const all = [...customPosts, ...activeStatic];
+                      if (all.length === 0) {
+                        return <p className="text-gray-500 text-center py-4">No posts found.</p>;
+                      }
+                      return all.map((post) => (
+                        <div key={post.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-4">
+                            <img src={post.img} alt={post.title} className="w-16 h-16 object-cover rounded-md" />
+                            <div>
+                              <h4 className="font-bold text-gray-900 line-clamp-1">{post.title}</h4>
+                              <p className="text-sm text-gray-500">By {post.author} • {post.date}</p>
+                            </div>
                           </div>
+                          <button
+                            onClick={() => handleDeletePost(post.id)}
+                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors ml-4"
+                            title="Delete Post"
+                          >
+                            <Trash2 size={20} />
+                          </button>
                         </div>
-                        <button 
-                          onClick={() => handleDeletePost(post.id)}
-                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors ml-4"
-                          title="Delete Post"
-                        >
-                          <Trash2 size={20} />
-                        </button>
-                      </div>
-                    ));
-                  })()}
+                      ));
+                    })()}
+                  </div>
                 </div>
-              </div>
               </>
             )}
 
             {activeTab === 'testimonials' && (
               <>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-xl font-bold text-gray-800">Add New Testimonial</h3>
-                  <div className="flex items-center gap-4">
-                    {publishStatus.message && (
-                      <span className={`text-sm font-medium ${publishStatus.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
-                        {publishStatus.message}
-                      </span>
-                    )}
-                    <button 
-                      type="button"
-                      onClick={handlePublishTestimonial}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      Publish
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Customer Name</label>
-                      <input 
-                        type="text" 
-                        placeholder="Enter customer name..." 
-                        value={testName}
-                        onChange={(e) => setTestName(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
-                      <select
-                        value={testRating}
-                        onChange={(e) => setTestRating(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-xl font-bold text-gray-800">Add New Testimonial</h3>
+                    <div className="flex items-center gap-4">
+                      {publishStatus.message && (
+                        <span className={`text-sm font-medium ${publishStatus.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
+                          {publishStatus.message}
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={handlePublishTestimonial}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                       >
-                        <option value="5">5 Stars</option>
-                        <option value="4">4 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="2">2 Stars</option>
-                        <option value="1">1 Star</option>
-                      </select>
+                        Publish
+                      </button>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Review Content</label>
-                    <textarea 
-                      rows="4" 
-                      placeholder="Write testimonial content here..." 
-                      value={testContent}
-                      onChange={(e) => setTestContent(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 resize-none"
-                    ></textarea>
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Customer Name</label>
+                        <input
+                          type="text"
+                          placeholder="Enter customer name..."
+                          value={testName}
+                          onChange={(e) => setTestName(e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                        <select
+                          value={testRating}
+                          onChange={(e) => setTestRating(e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                        >
+                          <option value="5">5 Stars</option>
+                          <option value="4">4 Stars</option>
+                          <option value="3">3 Stars</option>
+                          <option value="2">2 Stars</option>
+                          <option value="1">1 Star</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Review Content</label>
+                      <textarea
+                        rows="4"
+                        placeholder="Write testimonial content here..."
+                        value={testContent}
+                        onChange={(e) => setTestContent(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 resize-none"
+                      ></textarea>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Testimonials</h3>
-                <div className="space-y-4">
-                  {(() => {
-                    const activeStatic = testimonialsList.map((t, idx) => ({ ...t, id: `static-test-${idx}` })).filter(t => !deletedTests.includes(t.id));
-                    const all = [...customTests, ...activeStatic];
-                    if (all.length === 0) {
-                      return <p className="text-gray-500 text-center py-4">No testimonials found.</p>;
-                    }
-                    return all.map((test) => (
-                      <div key={test.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
-                        <div className="flex-1">
-                          <h4 className="font-bold text-gray-900">{test.name} <span className="text-yellow-500 text-sm ml-2">★★★★★</span></h4>
-                          <p className="text-sm text-gray-500 line-clamp-2 mt-1">{test.text}</p>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Testimonials</h3>
+                  <div className="space-y-4">
+                    {(() => {
+                      const activeStatic = testimonialsList.map((t, idx) => ({ ...t, id: `static-test-${idx}` })).filter(t => !deletedTests.includes(t.id));
+                      const all = [...customTests, ...activeStatic];
+                      if (all.length === 0) {
+                        return <p className="text-gray-500 text-center py-4">No testimonials found.</p>;
+                      }
+                      return all.map((test) => (
+                        <div key={test.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                          <div className="flex-1">
+                            <h4 className="font-bold text-gray-900">{test.name} <span className="text-yellow-500 text-sm ml-2">★★★★★</span></h4>
+                            <p className="text-sm text-gray-500 line-clamp-2 mt-1">{test.text}</p>
+                          </div>
+                          <button
+                            onClick={() => handleDeleteTestimonial(test.id)}
+                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors ml-4"
+                            title="Delete Testimonial"
+                          >
+                            <Trash2 size={20} />
+                          </button>
                         </div>
-                        <button 
-                          onClick={() => handleDeleteTestimonial(test.id)}
-                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors ml-4"
-                          title="Delete Testimonial"
-                        >
-                          <Trash2 size={20} />
-                        </button>
-                      </div>
-                    ));
-                  })()}
+                      ));
+                    })()}
+                  </div>
                 </div>
-              </div>
               </>
             )}
 
             {activeTab === 'projects' && (
               <>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-xl font-bold text-gray-800">Add New Project</h3>
-                  <div className="flex items-center gap-4">
-                    {publishStatus.message && (
-                      <span className={`text-sm font-medium ${publishStatus.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
-                        {publishStatus.message}
-                      </span>
-                    )}
-                    <button 
-                      type="button"
-                      onClick={handlePublishProject}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                    >
-                      Publish Project
-                    </button>
-                  </div>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Project Topic</label>
-                      <input 
-                        type="text" 
-                        placeholder="Enter project topic..." 
-                        value={projTopic}
-                        onChange={(e) => setProjTopic(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                      <select
-                        value={projCategory}
-                        onChange={(e) => setProjCategory(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                      >
-                        <option value="Logo Designs">Logo Designs</option>
-                        <option value="Social Media Posts">Social Media Posts</option>
-                        <option value="Banner Designs">Banner Designs</option>
-                        <option value="Business Cards">Business Cards</option>
-                        <option value="Other Designs">Other Designs</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Project Image</label>
-                    <div 
-                      className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition-colors cursor-pointer"
-                      onClick={() => projFileInputRef.current?.click()}
-                    >
-                      <input 
-                        type="file" 
-                        ref={projFileInputRef} 
-                        className="hidden" 
-                        accept=".jpg,.jpeg,.png,.webp,.avif" 
-                        onChange={handleProjImageChange}
-                      />
-                      {projImagePreview ? (
-                        <div className="relative w-full h-48 overflow-hidden rounded-lg">
-                          <img src={projImagePreview} alt="Preview" className="w-full h-full object-cover" />
-                        </div>
-                      ) : (
-                        <>
-                          <FileText className="mx-auto h-10 w-10 text-gray-400 mb-3" />
-                          <p className="text-sm text-gray-600"><span className="text-blue-600 font-medium">Click to upload</span> or drag and drop</p>
-                          <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP, AVIF up to 10MB</p>
-                        </>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-xl font-bold text-gray-800">Add New Project</h3>
+                    <div className="flex items-center gap-4">
+                      {publishStatus.message && (
+                        <span className={`text-sm font-medium ${publishStatus.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
+                          {publishStatus.message}
+                        </span>
                       )}
+                      <button
+                        type="button"
+                        onClick={handlePublishProject}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      >
+                        Publish Project
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Project Topic</label>
+                        <input
+                          type="text"
+                          placeholder="Enter project topic..."
+                          value={projTopic}
+                          onChange={(e) => setProjTopic(e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                        <select
+                          value={projCategory}
+                          onChange={(e) => setProjCategory(e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                        >
+                          <option value="Logo Designs">Logo Designs</option>
+                          <option value="Social Media Posts">Social Media Posts</option>
+                          <option value="Banner Designs">Banner Designs</option>
+                          <option value="Business Cards">Business Cards</option>
+                          <option value="Other Designs">Other Designs</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Project Image</label>
+                      <div
+                        className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition-colors cursor-pointer"
+                        onClick={() => projFileInputRef.current?.click()}
+                      >
+                        <input
+                          type="file"
+                          ref={projFileInputRef}
+                          className="hidden"
+                          accept=".jpg,.jpeg,.png,.webp,.avif"
+                          onChange={handleProjImageChange}
+                        />
+                        {projImagePreview ? (
+                          <div className="relative w-full h-48 overflow-hidden rounded-lg">
+                            <img src={projImagePreview} alt="Preview" className="w-full h-full object-cover" />
+                          </div>
+                        ) : (
+                          <>
+                            <FileText className="mx-auto h-10 w-10 text-gray-400 mb-3" />
+                            <p className="text-sm text-gray-600"><span className="text-blue-600 font-medium">Click to upload</span> or drag and drop</p>
+                            <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP, AVIF up to 10MB</p>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Projects</h3>
-                <div className="space-y-4">
-                  {(() => {
-                    const activeStatic = portfolioProjects.filter(p => !deletedProjects.includes(p.id));
-                    const all = [...customProjects, ...activeStatic];
-                    if (all.length === 0) {
-                      return <p className="text-gray-500 text-center py-4">No projects found.</p>;
-                    }
-                    return all.map((proj) => (
-                      <div key={proj.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-4">
-                          <img src={proj.img} alt={proj.title} className="w-16 h-16 object-cover rounded-md" />
-                          <div>
-                            <h4 className="font-bold text-gray-900 line-clamp-1">{proj.title}</h4>
-                            <p className="text-sm text-gray-500">{proj.category}</p>
+                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Projects</h3>
+                  <div className="space-y-4">
+                    {(() => {
+                      const activeStatic = portfolioProjects.filter(p => !deletedProjects.includes(p.id));
+                      const all = [...customProjects, ...activeStatic];
+                      if (all.length === 0) {
+                        return <p className="text-gray-500 text-center py-4">No projects found.</p>;
+                      }
+                      return all.map((proj) => (
+                        <div key={proj.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-4">
+                            <img src={proj.img} alt={proj.title} className="w-16 h-16 object-cover rounded-md" />
+                            <div>
+                              <h4 className="font-bold text-gray-900 line-clamp-1">{proj.title}</h4>
+                              <p className="text-sm text-gray-500">{proj.category}</p>
+                            </div>
                           </div>
+                          <button
+                            onClick={() => handleDeleteProject(proj.id)}
+                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors ml-4"
+                            title="Delete Project"
+                          >
+                            <Trash2 size={20} />
+                          </button>
                         </div>
-                        <button 
-                          onClick={() => handleDeleteProject(proj.id)}
-                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors ml-4"
-                          title="Delete Project"
-                        >
-                          <Trash2 size={20} />
-                        </button>
-                      </div>
-                    ));
-                  })()}
+                      ));
+                    })()}
+                  </div>
                 </div>
-              </div>
               </>
             )}
 

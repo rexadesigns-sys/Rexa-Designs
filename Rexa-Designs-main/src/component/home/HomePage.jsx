@@ -118,7 +118,7 @@ export default function HomePage({
 
       <section className="py-12 bg-white overflow-hidden border-t border-gray-100">
         <div className="container mx-auto px-4 mb-8">
-          <h3 className="text-center text-sm font-bold text-gray-400 uppercase tracking-widest">Trusted by Global Brands</h3>
+          <h3 className="text-center text-sm font-bold text-  Black-400 type-Bold uppercase tracking-widest">Trusted by Global Brands</h3>
         </div>
         <div className="relative w-full">
           <style>{`
@@ -138,11 +138,15 @@ export default function HomePage({
             {(() => {
               const brands = [
                 { name: 'Brand 1', img: '/images/brands/Taco Bell Icon.webp' },
-                { name: 'Brand 2', img: '/images/brands/Taco Bell Icon.webp' },
-                { name: 'Brand 3', img: '/images/brands/Taco Bell Icon.webp' },
-                { name: 'Brand 4', img: '/images/brands/Taco Bell Icon.webp' },
-                { name: 'Brand 5', img: '/images/brands/Taco Bell Icon.webp' },
-                { name: 'Brand 6', img: '/images/brands/Taco Bell Icon.webp' }
+                { name: 'Brand 2', img: '/images/brands/Pizza Hut Icon.webp' },
+                { name: 'Brand 3', img: '/images/brands/JohnKeells Icon.webp' },
+                { name: 'Brand 4', img: '/images/brands/Lime & Salt Icon.webp' },
+                { name: 'Brand 5', img: '/images/brands/Cycle Expert Icon.webp' },
+                { name: 'Brand 6', img: '/images/brands/Echo It Solutions Icon.webp' },
+                { name: 'Brand 7', img: '/images/brands/Rexa Fashion Icon.webp' },
+                { name: 'Brand 8', img: '/images/brands/Touch Of Gold Icon.webp' },
+                { name: 'Brand 9', img: '/images/brands/Prabashwara Icon.webp' },
+                { name: 'Brand 10', img: '/images/brands/Rexa Tech Icon.webp' }
               ];
 
               const renderBrands = [...brands, ...brands];
