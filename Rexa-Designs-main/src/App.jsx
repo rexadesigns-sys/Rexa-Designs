@@ -13,6 +13,7 @@ import ProjectPage from './component/portfolio/ProjectPage';
 import ContactPage from './component/contact/ContactPage';
 import BlogPage from './component/blog/BlogPage';
 import BlogPostPage from './component/blog/BlogPostPage';
+import AdminPanel from './component/admin/AdminPanel';
 import FloatingWhatsApp from './component/ui/FloatingWhatsApp';
 
 import { portfolioProjects } from './data/portfolioProjects';
@@ -24,6 +25,18 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const customTestimonials = JSON.parse(localStorage.getItem('customTestimonials')) || [];
+  const deletedStaticTestimonials = JSON.parse(localStorage.getItem('deletedStaticTestimonials')) || [];
+  const activeStaticTestimonials = testimonialsList
+    .map((t, idx) => ({ ...t, id: `static-test-${idx}` }))
+    .filter(t => !deletedStaticTestimonials.includes(t.id));
+  const allTestimonials = [...customTestimonials, ...activeStaticTestimonials];
+
+  const customProjects = JSON.parse(localStorage.getItem('customProjects')) || [];
+  const deletedStaticProjects = JSON.parse(localStorage.getItem('deletedStaticProjects')) || [];
+  const activeStaticProjects = portfolioProjects.filter(p => !deletedStaticProjects.includes(p.id));
+  const allProjects = [...customProjects, ...activeStaticProjects];
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -50,7 +63,7 @@ export default function App() {
   ];
 
   const recentWorksList = categoryOrder.map(catName => {
-    const project = portfolioProjects.find(p => p.category === catName);
+    const project = allProjects.find(p => p.category === catName);
     if (!project) return null;
     
     // Grab the newest item from the gallery (the very first one at the top)
@@ -109,7 +122,7 @@ export default function App() {
     return () => window.removeEventListener('resize', handleResizeTest);
   }, []);
 
-  const maxTestIndex = Math.max(0, testimonialsList.length - testItemsPerView);
+  const maxTestIndex = Math.max(0, allTestimonials.length - testItemsPerView);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -253,7 +266,7 @@ export default function App() {
               itemsPerView={itemsPerView}
               prevWork={prevWork}
               nextWork={nextWork}
-              testimonialsList={testimonialsList}
+              testimonialsList={allTestimonials}
               testimonialIndex={testimonialIndex}
               testItemsPerView={testItemsPerView}
               prevTestimonial={prevTestimonial}
@@ -267,14 +280,14 @@ export default function App() {
           path="/portfolio"
           element={(
             <PortfolioPage
-              portfolioProjects={portfolioProjects.filter(p => !p.hideFromPortfolio)}
+              portfolioProjects={allProjects.filter(p => !p.hideFromPortfolio)}
               openProject={openProject}
             />
           )}
         />
         <Route
           path="/portfolio/:projectId"
-          element={<ProjectPage portfolioProjects={portfolioProjects} />}
+          element={<ProjectPage portfolioProjects={allProjects} />}
         />
         <Route
           path="/contact"
@@ -296,6 +309,7 @@ export default function App() {
         />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
