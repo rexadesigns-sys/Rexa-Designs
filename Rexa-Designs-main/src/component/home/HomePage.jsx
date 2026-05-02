@@ -62,29 +62,35 @@ export default function HomePage({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: 'Logo & Branding',
-                img: '/images/brand-identity.svg'
+                title: 'Logo Designs',
+                img: '/images/Logo Mockup.svg',
+                link: '/portfolio/1'
               },
               {
-                title: 'Web Design & Development',
-                img: '/images/web-ui.svg'
+                title: 'Social Media Posts',
+                img: '/images/Social Media Mockup.svg',
+                link: '/portfolio/2'
               },
               {
-                title: 'Social Media Marketing',
-                img: '/images/social-media.svg'
+                title: 'Banner Designs',
+                img: '/images/Banner Mockup.webp',
+                link: '/portfolio/3'
               },
               {
-                title: 'Packaging & Label',
-                img: '/images/packaging.svg'
+                title: 'Business Cards',
+                img: '/images/Business Card Mockup.webp',
+                link: '/portfolio/4'
               },
               {
-                title: 'Company Profile',
-                img: '/images/company-profile.svg'
+                title: 'Other Designs',
+                img: '/images/Other Mockup.webp',
+                link: '/portfolio/5'
               }
             ].map((service, index) => (
-              <div
+              <Link
+                to={service.link}
                 key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group"
+                className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group cursor-pointer"
               >
                 <div className="h-64 overflow-hidden">
                   <img
@@ -98,14 +104,13 @@ export default function HomePage({
 
                 <div className="p-6 flex justify-between items-center">
                   <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
-                  <Link
-                    to="/portfolio"
-                    className="text-orange-500 font-semibold hover:text-orange-600 flex items-center text-sm whitespace-nowrap ml-4"
+                  <div
+                    className="text-orange-500 font-semibold group-hover:text-orange-600 flex items-center text-sm whitespace-nowrap ml-4"
                   >
                     Explore More <ArrowRight size={16} className="ml-1" />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -337,7 +342,7 @@ export default function HomePage({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {blogPosts.slice(0, 3).map((post, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 group flex flex-col">
+              <Link to={`/blog/${post.id}`} key={index} className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 group flex flex-col cursor-pointer">
                 <div className="h-48 overflow-hidden relative shrink-0">
                   <img src={post.img} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded text-xs font-bold">
@@ -345,18 +350,18 @@ export default function HomePage({
                   </div>
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-orange-500 cursor-pointer transition-colors">
-                    <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
+                    {post.title}
                   </h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">{post.excerpt}</p>
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                     <span className="text-sm font-medium text-gray-500">By {post.author}</span>
-                    <Link to={`/blog/${post.id}`} className="text-orange-500 hover:text-orange-600 font-semibold text-sm flex items-center">
+                    <div className="text-orange-500 group-hover:text-orange-600 font-semibold text-sm flex items-center">
                       Read Blog <ArrowRight size={16} className="ml-1" />
-                    </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
