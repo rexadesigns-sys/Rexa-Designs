@@ -45,7 +45,7 @@ export default function PricingPage() {
       <section className="bg-gray-900 text-white py-20 lg:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10">
           <img
-            src="/images/agency-hero.svg"
+            src="/images/Pricing Page.webp"
             className="w-full h-full object-cover"
             alt="Pricing Hero"
             loading="eager"
