@@ -3,27 +3,34 @@ import { createWhatsAppLink } from '../../data/whatsapp';
 
 const pricingPlans = [
   {
-    name: 'Basic',
-    price: 'LKR 29,900',
-    period: '/project',
-    features: ['2 Logo Concepts', 'Brand Guidelines', 'Unlimited Revisions'],
-    buttonLabel: 'Choose Basic',
+    name: 'Silver',
+    price: 'LKR 5,000',
+    originalPrice: 'LKR 5,500',
+    description: '1 Concept + High Quality JPG, PNG & PDF + 1 Revisions',
+    delivery: '3 Day Delivery',
+    features: ['Logo  Design - LKR 2000', 'Social Media Post - LKR 1500', 'Banner Design - LKR 1000', 'Business Card - LKR 1000'],
+    buttonLabel: 'Choose Silver',
     highlighted: false
   },
   {
-    name: 'Professional',
-    price: 'LKR 89,900',
-    period: '/project',
-    features: ['4 Logo Concepts', 'Full Identity Pack', 'CMS Website'],
-    buttonLabel: 'Choose Professional',
+    name: 'Gold',
+    badge: 'Most Popular',
+    price: 'LKR 7,000',
+    originalPrice: 'LKR 8,000',
+    description: '2 Concept + High Quality JPG, PNG & PDF + Source File + 2 Revisions',
+    delivery: '2 Day Delivery',
+    features: ['Logo  Design - LKR 3000', 'Social Media Post - LKR 2000', 'Banner Design - LKR 1500', 'Business Card - LKR 1500'],
+    buttonLabel: 'Choose Gold',
     highlighted: true
   },
   {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '/quote',
-    features: ['E-commerce Solutions', 'SEO Setup', 'Dedicated Manager'],
-    buttonLabel: 'Choose Custom',
+    name: 'Platinum',
+    price: 'LKR 10,000',
+    originalPrice: 'LKR 11,000',
+    description: '2 Concept + High Quality JPG, PNG & PDF + Source File + 3 Revisions',
+    delivery: '1 Day Delivery',
+    features: ['Logo  Design - LKR 4000', 'Social Media Post - LKR 3000', 'Banner Design - LKR 2000', 'Business Card - LKR 2000'],
+    buttonLabel: 'Choose Platinum',
     highlighted: false
   }
 ];
@@ -70,24 +77,48 @@ export default function PricingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            {pricingPlans.map((plan) => (
+            {pricingPlans.map((plan, index) => (
               <div
-                key={plan.name}
+                key={index}
                 className={
                   plan.highlighted
                     ? 'bg-gray-900 rounded-2xl shadow-xl border border-orange-500 p-8 transform md:scale-105 relative z-10 text-white'
                     : 'bg-white rounded-2xl shadow-sm border border-gray-100 p-8 hover:shadow-lg transition-shadow'
                 }
               >
-                <h3 className={`text-2xl font-bold mb-2 ${plan.highlighted ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className={`text-2xl font-bold mb-2 flex items-center justify-between ${plan.highlighted ? 'text-white' : 'text-gray-900'}`}>
                   {plan.name}
+                  {plan.badge && (
+                    <span className="text-xs font-bold bg-orange-500 text-white px-3 py-1 rounded-full uppercase tracking-wider">
+                      {plan.badge}
+                    </span>
+                  )}
                 </h3>
-                <div className={`text-4xl font-black mb-6 ${plan.highlighted ? 'text-orange-500' : 'text-gray-900'}`}>
-                  {plan.price}{' '}
-                  <span className={`text-lg font-medium ${plan.highlighted ? 'text-gray-500' : 'text-gray-400'}`}>
-                    {plan.period}
-                  </span>
+                <div className={`text-3xl xl:text-4xl font-black mb-6 flex items-baseline gap-3 ${plan.highlighted ? 'text-orange-500' : 'text-gray-900'}`}>
+                  <span className="whitespace-nowrap">{plan.price}</span>
+                  {plan.originalPrice && (
+                    <span className="text-xl text-gray-400 line-through font-bold whitespace-nowrap">
+                      {plan.originalPrice}
+                    </span>
+                  )}
+                  {plan.period && (
+                    <span className={`text-lg font-medium ${plan.highlighted ? 'text-gray-500' : 'text-gray-400'}`}>
+                      {plan.period}
+                    </span>
+                  )}
                 </div>
+
+                {plan.description && (
+                  <p className={`mb-2 text-sm font-medium ${plan.highlighted ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {plan.description}
+                  </p>
+                )}
+
+                {plan.delivery && (
+                  <p className={`mb-6 text-sm font-bold ${plan.highlighted ? 'text-orange-300' : 'text-orange-500'}`}>
+                    {plan.delivery}
+                  </p>
+                )}
 
                 <ul className={`space-y-4 mb-8 text-sm ${plan.highlighted ? 'text-gray-300' : 'text-gray-600'}`}>
                   {plan.features.map((feature) => (
