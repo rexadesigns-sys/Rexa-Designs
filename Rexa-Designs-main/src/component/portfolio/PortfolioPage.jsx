@@ -25,7 +25,7 @@ export default function PortfolioPage({
       <section className="bg-gray-900 text-white py-20 lg:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img
-            src="/images/agency-hero.svg"
+            src="/images/Logo Primary.webp"
             className="w-full h-full object-cover"
             alt="Portfolio Hero"
             loading="eager"
@@ -86,11 +86,10 @@ export default function PortfolioPage({
                   onClick={() => goToPage(pageNumber)}
                   aria-label={`Go to portfolio page ${pageNumber}`}
                   aria-current={currentPortfolioPage === pageNumber ? 'page' : undefined}
-                  className={`h-10 w-10 border text-lg font-medium transition-colors ${
-                    currentPortfolioPage === pageNumber
-                      ? 'bg-[#7347f5] border-[#7347f5] text-white'
-                      : 'border-[#7347f5] text-[#7347f5] hover:bg-[#7347f5] hover:text-white'
-                  }`}
+                  className={`h-10 w-10 border text-lg font-medium transition-colors ${currentPortfolioPage === pageNumber
+                    ? 'bg-[#FF6900] border-[#FF6900] text-white'
+                    : 'border-[#FF6900] text-[#FF6900] hover:bg-[#FF6900] hover:text-white'
+                    }`}
                 >
                   {pageNumber}
                 </button>
@@ -100,7 +99,7 @@ export default function PortfolioPage({
                 type="button"
                 onClick={() => goToPage(currentPortfolioPage === totalPages ? 1 : currentPortfolioPage + 1)}
                 aria-label="Next portfolio page"
-                className="h-10 w-12 flex items-center justify-center bg-[#7347f5] text-white hover:bg-[#5f37dd] transition-colors"
+                className="h-10 w-12 flex items-center justify-center bg-[#FF6900] text-white hover:bg-[#E65F00] transition-colors"
               >
                 <ChevronRight size={20} />
               </button>

@@ -1,8 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 
 export default function ProjectPage({ portfolioProjects }) {
   const { projectId } = useParams();
   const selectedProject = portfolioProjects.find((project) => project.id === Number(projectId));
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset page to 1 when project changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [projectId]);
+
+  const itemsPerPage = 9;
+  const totalItems = selectedProject?.gallery?.length || 0;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentGalleryItems = selectedProject?.gallery?.slice(startIndex, startIndex + itemsPerPage) || [];
 
   if (!selectedProject) return <Navigate to="/portfolio" replace />;
 
@@ -47,7 +61,7 @@ export default function ProjectPage({ portfolioProjects }) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {selectedProject.gallery.map((item, idx) => (
+                {currentGalleryItems.map((item, idx) => (
                   <div
                     key={idx}
                     className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100"
@@ -68,6 +82,27 @@ export default function ProjectPage({ portfolioProjects }) {
                   </div>
                 ))}
               </div>
+
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center mt-12 space-x-2">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                    <button
+                      key={pageNumber}
+                      onClick={() => {
+                        setCurrentPage(pageNumber);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`h-10 w-10 border text-lg font-medium transition-colors ${
+                        currentPage === pageNumber
+                          ? 'bg-[#FF6900] border-[#FF6900] text-white'
+                          : 'border-[#FF6900] text-[#FF6900] hover:bg-[#FF6900] hover:text-white'
+                      }`}
+                    >
+                      {pageNumber}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="text-center mt-12">
                 <Link
