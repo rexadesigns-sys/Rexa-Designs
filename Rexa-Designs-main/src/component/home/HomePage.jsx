@@ -35,12 +35,12 @@ export default function HomePage({
             Graphics design in Sri Lanka
           </span>
 
-          <h1 className="text-4xl lg:text-6xl font-black mb-6 leading-tight">
-            Creative Graphic Design Solutions <br />
+          <h1 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
+            Rexa Designs - Creative Graphic Design Solutions in Sri Lanka
           </h1>
 
           <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Welcome to rexadesigns.lk, your trusted graphic design partner in Sri Lanka, delivering creative solutions with over 5 years of experience.
+            Welcome to Rexa Designs, your trusted graphic design partner in Sri Lanka. We specialize in logos, social media, and branding to elevate your business with over 5 years of experience.
           </p>
 
           <Link
