@@ -106,5 +106,19 @@ export const portfolioProjects = [
       { title: 'Touch Of Gold Id', img: '/images/Touch Of Gold Id.webp' }
 
     ]
+  },
+  {
+    id: 6,
+    title: 'Elegance in Every Detail',
+    category: 'Wedding Invitation',
+    img: '/images/wedding_mockup.png',
+    client: 'Elegant Unions',
+    date: 'Jun 2026',
+    desc: 'A curated gallery of elegant wedding invitations, crafted with premium textures and gold foil embossing.',
+    challenge: 'Designing invitation card mockups that represent high luxury without sacrificing loading speed.',
+    solution: 'Optimized high-resolution textures and foil layer details into a lightweight responsive web gallery.',
+    gallery: [
+      { title: 'Royal Gold Invitation', img: '/images/wedding_mockup.png' }
+    ]
   }
 ];

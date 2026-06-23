@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import AnimatedCounter from '../common/AnimatedCounter';
-import { blogPosts } from '../../data/blogPosts';
 
 export default function HomePage({
   openProject,
@@ -14,7 +13,8 @@ export default function HomePage({
   testimonialIndex,
   testItemsPerView,
   prevTestimonial,
-  nextTestimonial
+  nextTestimonial,
+  blogPostsList = []
 }) {
   return (
     <>
@@ -80,6 +80,11 @@ export default function HomePage({
                 title: 'Business Cards',
                 img: '/images/Business Card Mockup.webp',
                 link: '/portfolio/4'
+              },
+              {
+                title: 'Wedding Invitation',
+                img: '/images/wedding_mockup.png',
+                link: '/portfolio/6'
               },
               {
                 title: 'Other Designs',
@@ -341,7 +346,7 @@ export default function HomePage({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogPosts.slice(0, 3).map((post, index) => (
+            {blogPostsList.slice(0, 3).map((post, index) => (
               <Link href={`/blog/${post.id}`} key={index} className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 group flex flex-col cursor-pointer">
                 <div className="h-48 overflow-hidden relative shrink-0">
                   <img src={post.img} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />

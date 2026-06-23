@@ -3,30 +3,55 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import HomePage from '../component/home/HomePage';
-import { portfolioProjects } from '../data/portfolioProjects';
-import { testimonialsList } from '../data/testimonials';
+import { supabase } from '../lib/supabase';
+import { portfolioProjects as staticProjects } from '../data/portfolioProjects';
+import { testimonialsList as staticTestimonials } from '../data/testimonials';
+import { blogPosts as staticBlogs } from '../data/blogPosts';
 
 export default function Home() {
   const router = useRouter();
   const [allTestimonials, setAllTestimonials] = useState([]);
   const [allProjects, setAllProjects] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]);
   const [recentWorkIndex, setRecentWorkIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [testItemsPerView, setTestItemsPerView] = useState(3);
 
   useEffect(() => {
-    const customTestimonials = JSON.parse(localStorage.getItem('customTestimonials')) || [];
-    const deletedStaticTestimonials = JSON.parse(localStorage.getItem('deletedStaticTestimonials')) || [];
-    const activeStaticTestimonials = testimonialsList
-      .map((t, idx) => ({ ...t, id: `static-test-${idx}` }))
-      .filter(t => !deletedStaticTestimonials.includes(t.id));
-    setAllTestimonials([...customTestimonials, ...activeStaticTestimonials]);
+    async function fetchData() {
+      try {
+        // Fetch testimonials
+        const { data: testimonialsData } = await supabase
+          .from('testimonials')
+          .select('*')
+          .order('created_at', { ascending: false });
+        
+        setAllTestimonials(testimonialsData && testimonialsData.length > 0 ? testimonialsData : staticTestimonials);
 
-    const customProjects = JSON.parse(localStorage.getItem('customProjects')) || [];
-    const deletedStaticProjects = JSON.parse(localStorage.getItem('deletedStaticProjects')) || [];
-    const activeStaticProjects = portfolioProjects.filter(p => !deletedStaticProjects.includes(p.id));
-    setAllProjects([...customProjects, ...activeStaticProjects]);
+        // Fetch projects
+        const { data: projectsData } = await supabase
+          .from('portfolio_projects')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        setAllProjects(projectsData && projectsData.length > 0 ? projectsData : staticProjects);
+
+        // Fetch blog posts
+        const { data: blogData } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        setBlogPosts(blogData && blogData.length > 0 ? blogData : staticBlogs);
+      } catch (error) {
+        setAllTestimonials(staticTestimonials);
+        setAllProjects(staticProjects);
+        setBlogPosts(staticBlogs);
+      }
+    }
+
+    fetchData();
   }, []);
 
   const categoryOrder = [
@@ -34,6 +59,7 @@ export default function Home() {
     'Social Media Posts',
     'Banner Designs',
     'Business Cards',
+    'Wedding Invitation',
     'Other Designs'
   ];
 
@@ -129,6 +155,7 @@ export default function Home() {
       testItemsPerView={testItemsPerView}
       prevTestimonial={prevTestimonial}
       nextTestimonial={nextTestimonial}
+      blogPostsList={blogPosts}
     />
   );
 }

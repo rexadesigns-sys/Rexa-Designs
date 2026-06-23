@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 import { blogPosts } from '../../data/blogPosts';
 
-export default function BlogPage() {
+export default function BlogPage({ blogPostsList = [] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
@@ -13,10 +13,11 @@ export default function BlogPage() {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  const activePosts = blogPostsList && blogPostsList.length > 0 ? blogPostsList : blogPosts;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+  const currentPosts = activePosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(activePosts.length / postsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

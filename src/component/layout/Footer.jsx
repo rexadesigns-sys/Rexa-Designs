@@ -115,6 +115,7 @@ export default function Footer() {
               <li>Social Media Posts</li>
               <li>Banner Designs</li>
               <li>Business Cards</li>
+              <li>Wedding Invitation</li>
               <li>Other Designs</li>
             </ul>
           </div>

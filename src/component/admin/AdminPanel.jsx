@@ -18,6 +18,7 @@ import {
 import { blogPosts } from '../../data/blogPosts';
 import { testimonialsList } from '../../data/testimonials';
 import { portfolioProjects } from '../../data/portfolioProjects';
+import { supabase } from '../../lib/supabase';
 
 export default function AdminPanel() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -78,7 +79,24 @@ export default function AdminPanel() {
   const [customProjects, setCustomProjects] = useState([]);
   const [deletedProjects, setDeletedProjects] = useState([]);
 
+  // Database unified states
+  const [dbBlogPosts, setDbBlogPosts] = useState([]);
+  const [dbTestimonials, setDbTestimonials] = useState([]);
+  const [dbProjects, setDbProjects] = useState([]);
+  const [isSupabaseConfigured, setIsSupabaseConfigured] = useState(false);
+
   useEffect(() => {
+    const configured = !!(
+      process.env.NEXT_PUBLIC_SUPABASE_URL &&
+      process.env.NEXT_PUBLIC_SUPABASE_URL !== 'your-supabase-url' &&
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY !== 'your-supabase-anon-key'
+    );
+    setIsSupabaseConfigured(configured);
+  }, []);
+
+  useEffect(() => {
+    // 1. Sync legacy local storage states for fallback
     const loadedCustomPosts = JSON.parse(localStorage.getItem('customBlogPosts')) || [];
     setCustomPosts(loadedCustomPosts);
     const loadedDeletedStatic = JSON.parse(localStorage.getItem('deletedStaticPosts')) || [];
@@ -93,25 +111,105 @@ export default function AdminPanel() {
     setCustomProjects(loadedCustomProjects);
     const loadedDeletedProjects = JSON.parse(localStorage.getItem('deletedStaticProjects')) || [];
     setDeletedProjects(loadedDeletedProjects);
+
+    // 2. Fetch from Supabase if configured, otherwise build fallback lists
+    async function loadData() {
+      const configured = !!(
+        process.env.NEXT_PUBLIC_SUPABASE_URL &&
+        process.env.NEXT_PUBLIC_SUPABASE_URL !== 'your-supabase-url' &&
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY !== 'your-supabase-anon-key'
+      );
+
+      if (configured) {
+        // Fetch Blog Posts
+        try {
+          const { data, error } = await supabase
+            .from('blog_posts')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (!error && data && data.length > 0) {
+            setDbBlogPosts(data);
+          } else {
+            setDbBlogPosts(blogPosts);
+          }
+        } catch (e) {
+          setDbBlogPosts(blogPosts);
+        }
+
+        // Fetch Testimonials
+        try {
+          const { data, error } = await supabase
+            .from('testimonials')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (!error && data && data.length > 0) {
+            setDbTestimonials(data);
+          } else {
+            setDbTestimonials(testimonialsList);
+          }
+        } catch (e) {
+          setDbTestimonials(testimonialsList);
+        }
+
+        // Fetch Projects
+        try {
+          const { data, error } = await supabase
+            .from('portfolio_projects')
+            .select('*')
+            .order('created_at', { ascending: false });
+          if (!error && data && data.length > 0) {
+            setDbProjects(data);
+          } else {
+            setDbProjects(portfolioProjects);
+          }
+        } catch (e) {
+          setDbProjects(portfolioProjects);
+        }
+      } else {
+        // Fallback: build lists from localStorage + static
+        const activeStaticPosts = blogPosts.filter(p => !loadedDeletedStatic.includes(p.id));
+        setDbBlogPosts([...loadedCustomPosts, ...activeStaticPosts]);
+
+        const activeStaticTests = testimonialsList.map((t, idx) => ({ ...t, id: `static-test-${idx}` })).filter(t => !loadedDeletedTests.includes(t.id));
+        setDbTestimonials([...loadedCustomTests, ...activeStaticTests]);
+
+        const activeStaticProjects = portfolioProjects.filter(p => !loadedDeletedProjects.includes(p.id));
+        setDbProjects([...loadedCustomProjects, ...activeStaticProjects]);
+      }
+    }
+    loadData();
   }, [publishStatus]);
 
-  const handleDeletePost = (id) => {
+  const handleDeletePost = async (id) => {
     if (window.confirm('Are you sure you want to delete this post?')) {
-      if (id.toString().startsWith('custom-')) {
-        const updatedCustomPosts = customPosts.filter(p => p.id !== id);
-        localStorage.setItem('customBlogPosts', JSON.stringify(updatedCustomPosts));
-        setCustomPosts(updatedCustomPosts);
+      if (isSupabaseConfigured) {
+        try {
+          const { error } = await supabase
+            .from('blog_posts')
+            .delete()
+            .eq('id', id);
+          if (error) throw error;
+          setPublishStatus({ type: 'success', message: 'Post deleted from database successfully!' });
+        } catch (e) {
+          setPublishStatus({ type: 'error', message: 'Database Error: ' + e.message });
+        }
       } else {
-        const updatedDeleted = [...deletedStaticPosts, id];
-        localStorage.setItem('deletedStaticPosts', JSON.stringify(updatedDeleted));
-        setDeletedStaticPosts(updatedDeleted);
+        if (id.toString().startsWith('custom-')) {
+          const updatedCustomPosts = customPosts.filter(p => p.id !== id);
+          localStorage.setItem('customBlogPosts', JSON.stringify(updatedCustomPosts));
+        } else {
+          const loadedDeletedStatic = JSON.parse(localStorage.getItem('deletedStaticPosts')) || [];
+          const updatedDeleted = [...loadedDeletedStatic, id];
+          localStorage.setItem('deletedStaticPosts', JSON.stringify(updatedDeleted));
+        }
+        setPublishStatus({ type: 'success', message: 'Post deleted successfully!' });
       }
-      setPublishStatus({ type: 'success', message: 'Post deleted successfully!' });
       setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
     }
   };
 
-  const handlePublishTestimonial = () => {
+  const handlePublishTestimonial = async () => {
     if (!testName || !testContent) {
       setPublishStatus({ type: 'error', message: 'Please fill in all testimonial fields.' });
       setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
@@ -119,40 +217,71 @@ export default function AdminPanel() {
     }
 
     const newTest = {
-      id: `custom-test-${Date.now()}`,
       name: testName,
       text: testContent,
       rating: parseInt(testRating)
     };
 
-    const existingTests = JSON.parse(localStorage.getItem('customTestimonials')) || [];
-    localStorage.setItem('customTestimonials', JSON.stringify([newTest, ...existingTests]));
-
-    setPublishStatus({ type: 'success', message: `Testimonial added successfully!` });
+    if (isSupabaseConfigured) {
+      try {
+        const { error } = await supabase
+          .from('testimonials')
+          .insert([newTest]);
+        if (error) throw error;
+        
+        setPublishStatus({ type: 'success', message: 'Testimonial added to database successfully!' });
+        setTestName('');
+        setTestRating(5);
+        setTestContent('');
+      } catch (e) {
+        setPublishStatus({ type: 'error', message: 'Database Error: ' + e.message });
+      }
+    } else {
+      const localTest = {
+        id: `custom-test-${Date.now()}`,
+        ...newTest
+      };
+      const existingTests = JSON.parse(localStorage.getItem('customTestimonials')) || [];
+      localStorage.setItem('customTestimonials', JSON.stringify([localTest, ...existingTests]));
+      
+      setPublishStatus({ type: 'success', message: `Testimonial added successfully!` });
+      setTestName('');
+      setTestRating(5);
+      setTestContent('');
+    }
     setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
-
-    setTestName('');
-    setTestRating(5);
-    setTestContent('');
   };
 
-  const handleDeleteTestimonial = (id) => {
+  const handleDeleteTestimonial = async (id) => {
     if (window.confirm('Are you sure you want to delete this testimonial?')) {
-      if (id.toString().startsWith('custom-')) {
-        const updatedCustom = customTests.filter(t => t.id !== id);
-        localStorage.setItem('customTestimonials', JSON.stringify(updatedCustom));
-        setCustomTests(updatedCustom);
+      if (isSupabaseConfigured) {
+        try {
+          const { error } = await supabase
+            .from('testimonials')
+            .delete()
+            .eq('id', id);
+          if (error) throw error;
+          setPublishStatus({ type: 'success', message: 'Testimonial deleted from database!' });
+        } catch (e) {
+          setPublishStatus({ type: 'error', message: 'Database Error: ' + e.message });
+        }
       } else {
-        const updatedDeleted = [...deletedTests, id];
-        localStorage.setItem('deletedStaticTestimonials', JSON.stringify(updatedDeleted));
-        setDeletedTests(updatedDeleted);
+        if (id.toString().startsWith('custom-')) {
+          const loadedCustomTests = JSON.parse(localStorage.getItem('customTestimonials')) || [];
+          const updatedCustom = loadedCustomTests.filter(t => t.id !== id);
+          localStorage.setItem('customTestimonials', JSON.stringify(updatedCustom));
+        } else {
+          const loadedDeletedTests = JSON.parse(localStorage.getItem('deletedStaticTestimonials')) || [];
+          const updatedDeleted = [...loadedDeletedTests, id];
+          localStorage.setItem('deletedStaticTestimonials', JSON.stringify(updatedDeleted));
+        }
+        setPublishStatus({ type: 'success', message: 'Testimonial deleted!' });
       }
-      setPublishStatus({ type: 'success', message: 'Testimonial deleted!' });
       setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
     }
   };
 
-  const handlePublishProject = () => {
+  const handlePublishProject = async () => {
     if (!projTopic || !projCategory || !projImage) {
       setPublishStatus({ type: 'error', message: 'Please fill in all project fields and upload an image.' });
       setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
@@ -160,46 +289,84 @@ export default function AdminPanel() {
     }
 
     const newProject = {
-      id: `custom-proj-${Date.now()}`,
       title: projTopic,
       category: projCategory,
       img: projImagePreview,
       gallery: [
         { title: projTopic, img: projImagePreview }
-      ]
+      ],
+      hide_from_portfolio: false
     };
 
-    const existingProjects = JSON.parse(localStorage.getItem('customProjects')) || [];
-    try {
-      localStorage.setItem('customProjects', JSON.stringify([newProject, ...existingProjects]));
-    } catch (e) {
-      setPublishStatus({ type: 'error', message: 'Failed: Image is too large for local storage.' });
-      setTimeout(() => setPublishStatus({ type: '', message: '' }), 5000);
-      return;
+    if (isSupabaseConfigured) {
+      try {
+        const { error } = await supabase
+          .from('portfolio_projects')
+          .insert([newProject]);
+        if (error) throw error;
+
+        setPublishStatus({ type: 'success', message: 'Project added to database successfully!' });
+        setProjTopic('');
+        setProjCategory('Logo Designs');
+        setProjImage(null);
+        setProjImagePreview(null);
+        if (projFileInputRef.current) projFileInputRef.current.value = '';
+      } catch (e) {
+        setPublishStatus({ type: 'error', message: 'Database Error: ' + e.message });
+      }
+    } else {
+      const localProject = {
+        id: `custom-proj-${Date.now()}`,
+        title: projTopic,
+        category: projCategory,
+        img: projImagePreview,
+        gallery: [
+          { title: projTopic, img: projImagePreview }
+        ],
+        hideFromPortfolio: false
+      };
+      const existingProjects = JSON.parse(localStorage.getItem('customProjects')) || [];
+      try {
+        localStorage.setItem('customProjects', JSON.stringify([localProject, ...existingProjects]));
+        setPublishStatus({ type: 'success', message: `Project added successfully!` });
+        
+        setProjTopic('');
+        setProjCategory('Logo Designs');
+        setProjImage(null);
+        setProjImagePreview(null);
+        if (projFileInputRef.current) projFileInputRef.current.value = '';
+      } catch (e) {
+        setPublishStatus({ type: 'error', message: 'Failed: Image is too large for local storage.' });
+      }
     }
-
-    setPublishStatus({ type: 'success', message: `Project added successfully!` });
     setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
-
-    setProjTopic('');
-    setProjCategory('Logo Designs');
-    setProjImage(null);
-    setProjImagePreview(null);
-    if (projFileInputRef.current) projFileInputRef.current.value = '';
   };
 
-  const handleDeleteProject = (id) => {
+  const handleDeleteProject = async (id) => {
     if (window.confirm('Are you sure you want to delete this project?')) {
-      if (id.toString().startsWith('custom-')) {
-        const updatedCustom = customProjects.filter(p => p.id !== id);
-        localStorage.setItem('customProjects', JSON.stringify(updatedCustom));
-        setCustomProjects(updatedCustom);
+      if (isSupabaseConfigured) {
+        try {
+          const { error } = await supabase
+            .from('portfolio_projects')
+            .delete()
+            .eq('id', id);
+          if (error) throw error;
+          setPublishStatus({ type: 'success', message: 'Project deleted from database!' });
+        } catch (e) {
+          setPublishStatus({ type: 'error', message: 'Database Error: ' + e.message });
+        }
       } else {
-        const updatedDeleted = [...deletedProjects, id];
-        localStorage.setItem('deletedStaticProjects', JSON.stringify(updatedDeleted));
-        setDeletedProjects(updatedDeleted);
+        if (id.toString().startsWith('custom-')) {
+          const loadedCustomProjects = JSON.parse(localStorage.getItem('customProjects')) || [];
+          const updatedCustom = loadedCustomProjects.filter(p => p.id !== id);
+          localStorage.setItem('customProjects', JSON.stringify(updatedCustom));
+        } else {
+          const loadedDeletedProjects = JSON.parse(localStorage.getItem('deletedStaticProjects')) || [];
+          const updatedDeleted = [...loadedDeletedProjects, id];
+          localStorage.setItem('deletedStaticProjects', JSON.stringify(updatedDeleted));
+        }
+        setPublishStatus({ type: 'success', message: 'Project deleted!' });
       }
-      setPublishStatus({ type: 'success', message: 'Project deleted!' });
       setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
     }
   };
@@ -228,15 +395,20 @@ export default function AdminPanel() {
     }
   };
 
-  const handlePublish = () => {
+  const handlePublish = async () => {
     if (!blogTopic || !blogAuthor || !blogContent || !blogImage) {
       setPublishStatus({ type: 'error', message: 'Please fill in all fields before publishing.' });
       setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
       return;
     }
 
+    const slug = blogTopic
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '') + '-' + Date.now();
+
     const newPost = {
-      id: `custom-${Date.now()}`,
+      id: slug,
       title: blogTopic,
       category: 'News',
       date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
@@ -246,28 +418,47 @@ export default function AdminPanel() {
       content: `<p>${blogContent.replace(/\n/g, '<br/>')}</p>`
     };
 
-    const existingPosts = JSON.parse(localStorage.getItem('customBlogPosts')) || [];
-
-    try {
-      localStorage.setItem('customBlogPosts', JSON.stringify([newPost, ...existingPosts]));
-    } catch (e) {
-      setPublishStatus({ type: 'error', message: 'Failed: Image is too large for local storage. Please use a smaller image.' });
-      setTimeout(() => setPublishStatus({ type: '', message: '' }), 5000);
-      return;
+    if (isSupabaseConfigured) {
+      try {
+        const { error } = await supabase
+          .from('blog_posts')
+          .insert([newPost]);
+        if (error) throw error;
+        
+        setPublishStatus({ type: 'success', message: `Successfully published: ${blogTopic}` });
+        
+        // Reset form
+        setBlogTopic('');
+        setBlogAuthor('');
+        setBlogContent('');
+        setBlogImage(null);
+        setBlogImagePreview(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+      } catch (e) {
+        setPublishStatus({ type: 'error', message: 'Database Error: ' + e.message });
+      }
+    } else {
+      const existingPosts = JSON.parse(localStorage.getItem('customBlogPosts')) || [];
+      try {
+        localStorage.setItem('customBlogPosts', JSON.stringify([newPost, ...existingPosts]));
+        setPublishStatus({ type: 'success', message: `Successfully published: ${blogTopic}` });
+        
+        // Reset form
+        setBlogTopic('');
+        setBlogAuthor('');
+        setBlogContent('');
+        setBlogImage(null);
+        setBlogImagePreview(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+      } catch (e) {
+        setPublishStatus({ type: 'error', message: 'Failed: Image is too large for local storage. Please use a smaller image.' });
+      }
     }
-
-    setPublishStatus({ type: 'success', message: `Successfully published: ${blogTopic}` });
     setTimeout(() => setPublishStatus({ type: '', message: '' }), 4000);
-
-    // Reset form
-    setBlogTopic('');
-    setBlogAuthor('');
-    setBlogContent('');
-    setBlogImage(null);
-    setBlogImagePreview(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
   };
 
   const navigation = [
@@ -435,9 +626,9 @@ export default function AdminPanel() {
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
-                    { title: 'Total Projects', value: (customProjects.length + portfolioProjects.filter(p => !deletedProjects.includes(p.id)).length).toString(), icon: Briefcase, color: 'text-blue-600', bg: 'bg-blue-100' },
-                    { title: 'Total Posts', value: (customPosts.length + blogPosts.filter(p => !deletedStaticPosts.includes(p.id)).length).toString(), icon: FileText, color: 'text-green-600', bg: 'bg-green-100' },
-                    { title: 'Testimonials', value: (customTests.length + testimonialsList.filter((_, idx) => !deletedTests.includes(`static-test-${idx}`)).length).toString(), icon: Users, color: 'text-purple-600', bg: 'bg-purple-100' },
+                    { title: 'Total Projects', value: dbProjects.length.toString(), icon: Briefcase, color: 'text-blue-600', bg: 'bg-blue-100' },
+                    { title: 'Total Posts', value: dbBlogPosts.length.toString(), icon: FileText, color: 'text-green-600', bg: 'bg-green-100' },
+                    { title: 'Testimonials', value: dbTestimonials.length.toString(), icon: Users, color: 'text-purple-600', bg: 'bg-purple-100' },
                   ].map((stat, i) => (
                     <div key={i} className="bg-white rounded-xl shadow-sm p-6 flex items-center gap-4">
                       <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${stat.bg} ${stat.color}`}>
@@ -543,8 +734,7 @@ export default function AdminPanel() {
                   <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Posts</h3>
                   <div className="space-y-4">
                     {(() => {
-                      const activeStatic = blogPosts.filter(p => !deletedStaticPosts.includes(p.id));
-                      const all = [...customPosts, ...activeStatic];
+                      const all = dbBlogPosts;
                       if (all.length === 0) {
                         return <p className="text-gray-500 text-center py-4">No posts found.</p>;
                       }
@@ -638,8 +828,7 @@ export default function AdminPanel() {
                   <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Testimonials</h3>
                   <div className="space-y-4">
                     {(() => {
-                      const activeStatic = testimonialsList.map((t, idx) => ({ ...t, id: `static-test-${idx}` })).filter(t => !deletedTests.includes(t.id));
-                      const all = [...customTests, ...activeStatic];
+                      const all = dbTestimonials;
                       if (all.length === 0) {
                         return <p className="text-gray-500 text-center py-4">No testimonials found.</p>;
                       }
@@ -708,6 +897,7 @@ export default function AdminPanel() {
                           <option value="Social Media Posts">Social Media Posts</option>
                           <option value="Banner Designs">Banner Designs</option>
                           <option value="Business Cards">Business Cards</option>
+                          <option value="Wedding Invitation">Wedding Invitation</option>
                           <option value="Other Designs">Other Designs</option>
                         </select>
                       </div>
@@ -746,8 +936,7 @@ export default function AdminPanel() {
                   <h3 className="text-xl font-bold text-gray-800 mb-6">Manage Projects</h3>
                   <div className="space-y-4">
                     {(() => {
-                      const activeStatic = portfolioProjects.filter(p => !deletedProjects.includes(p.id));
-                      const all = [...customProjects, ...activeStatic];
+                      const all = dbProjects;
                       if (all.length === 0) {
                         return <p className="text-gray-500 text-center py-4">No projects found.</p>;
                       }

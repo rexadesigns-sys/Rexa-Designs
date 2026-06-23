@@ -2,16 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import ProjectPage from '../../../component/portfolio/ProjectPage';
+import { supabase } from '../../../lib/supabase';
 import { portfolioProjects as staticProjects } from '../../../data/portfolioProjects';
 
 export default function ProjectDetail() {
   const [allProjects, setAllProjects] = useState([]);
 
   useEffect(() => {
-    const customProjects = JSON.parse(localStorage.getItem('customProjects')) || [];
-    const deletedStaticProjects = JSON.parse(localStorage.getItem('deletedStaticProjects')) || [];
-    const activeStaticProjects = staticProjects.filter(p => !deletedStaticProjects.includes(p.id));
-    setAllProjects([...customProjects, ...activeStaticProjects]);
+    async function fetchProjects() {
+      try {
+        const { data: projectsData } = await supabase
+          .from('portfolio_projects')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (projectsData && projectsData.length > 0) {
+          setAllProjects(projectsData);
+        } else {
+          setAllProjects(staticProjects);
+        }
+      } catch (error) {
+        setAllProjects(staticProjects);
+      }
+    }
+
+    fetchProjects();
   }, []);
 
   return <ProjectPage portfolioProjects={allProjects} />;
