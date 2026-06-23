@@ -18,13 +18,18 @@ export default function Portfolio() {
           .select('*')
           .order('created_at', { ascending: false });
 
+        let list = [];
         if (projectsData && projectsData.length > 0) {
-          setProjects(projectsData.filter(p => !p.hide_from_portfolio && !p.hideFromPortfolio));
+          list = projectsData.filter(p => !p.hide_from_portfolio && !p.hideFromPortfolio);
         } else {
-          setProjects(staticProjects.filter(p => !p.hideFromPortfolio));
+          list = staticProjects.filter(p => !p.hideFromPortfolio);
         }
+        list.sort((a, b) => a.category.localeCompare(b.category));
+        setProjects(list);
       } catch (error) {
-        setProjects(staticProjects.filter(p => !p.hideFromPortfolio));
+        const list = staticProjects.filter(p => !p.hideFromPortfolio);
+        list.sort((a, b) => a.category.localeCompare(b.category));
+        setProjects(list);
       }
     }
 
