@@ -1,22 +1,22 @@
 export const testimonialsList = [
   {
-    name: "Vishani Nawodya",
-    text: "A great place to get your Graphic works done with an excellent quality and for a reasonable price. They are really capable of knowing what their customers' desires on the artwork and they get it done even better... I recommend Graphics.lk"
+    name: "Ceylango Education",
+    text: "I absolutely love the designs created by this page! The attention to detail and creativity is outstanding. Highly recommended for anyone in need of top-notch graphic design services. 😍👍"
   },
   {
-    name: "Supun Ekanayaka",
-    text: "Recommended to have any type of graphic work. Excellent customer care, very creative and quick response. Extremely satisfied with the work. Thanks."
+    name: "Andare House",
+    text: "The quality of work from the Graphic Design Facebook page is unmatched. They consistently deliver visually appealing designs that align with my vision. Their ability to understand client requirements and translate them into stunning graphics is commendable. I highly recommend their services."
   },
   {
-    name: "Dr. Saranga Alahapperuma",
-    text: "Graphics.lk is one of the best Advertizing & Marketting solution available in Sri Lanka with affordable cost & friendly services."
+    name: "Shine D With O",
+    text: "The Graphic Design Facebook page has been instrumental in enhancing my social media presence. Their eye catching designs have significantly increased engagement and helped me connect with my target audience. I'm grateful for their expertise and highly recommend their services"
   },
   {
-    name: "Nimesha Peiris",
-    text: "I absolutely love the designs created by this page! The attention to detail and creativity is outstanding. Highly recommended for anyone in need of top-notch graphic design services."
+    name: "Shine & Brave D",
+    text: "ඇත්තටම ඉතාම හොද design කරලා දෙනවා.👍 වේලාවට වැඩ කරනවා. ඉතාම වගකීමෙන් අපේ වැඩේ කරලා දෙනවා. Absolutely I can recommend anyone. 👍"
   },
   {
-    name: "Prashanth",
-    text: "Very professional, quick response and great work ethics. Quality of work is amazing. Highly recommended."
+    name: "Thamasha Nadun Premathilaka",
+    text: "highly reccomended 👌 Very nice designs. Very reasonable service. They are very responsive We can do it the way we want"
   }
 ];

@@ -1,18 +1,25 @@
+"use client";
+
 import { useEffect } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ArrowLeft, Calendar, User, ChevronRight } from 'lucide-react';
 import { blogPosts } from '../../data/blogPosts';
 
 export default function BlogPostPage() {
   const { id } = useParams();
+  const router = useRouter();
   const post = blogPosts.find((p) => p.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+    if (!post) {
+      router.replace('/blog');
+    }
+  }, [id, post, router]);
 
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return null;
   }
 
   return (
@@ -20,7 +27,7 @@ export default function BlogPostPage() {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-8">
           <Link
-            to="/blog"
+            href="/blog"
             className="inline-flex items-center text-gray-500 hover:text-orange-500 font-medium transition-colors"
           >
             <ArrowLeft size={20} className="mr-2" />

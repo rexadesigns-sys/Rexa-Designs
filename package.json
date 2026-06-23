@@ -1,11 +1,25 @@
 {
-  "name": "rexa-designs-wrapper",
-  "version": "1.0.0",
-  "description": "Wrapper to redirect to the actual project folder",
+  "name": "rexa-design",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "preinstall": "cd Rexa-Designs-main && npm install",
-    "dev": "cd Rexa-Designs-main && npm run dev",
-    "build": "cd Rexa-Designs-main && npm run build",
-    "start": "cd Rexa-Designs-main && npm start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0-beta.8",
+    "@tailwindcss/postcss": "^4.0.0-beta.8",
+    "postcss": "^8.4.49"
+  },
+  "devDependencies": {
+    "eslint": "^9.15.0",
+    "eslint-config-next": "^15.1.0"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/admin/page": "/admin",
+  "/blog/[id]/page": "/blog/[id]",
+  "/blog/page": "/blog",
+  "/contact/page": "/contact",
+  "/page": "/",
+  "/portfolio/[projectId]/page": "/portfolio/[projectId]",
+  "/portfolio/page": "/portfolio",
+  "/pricing/page": "/pricing"
+}

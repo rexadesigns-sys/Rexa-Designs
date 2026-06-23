@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Target, Eye, MapPin, PhoneCall, Headset } from 'lucide-react';
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-black mb-4">About Us</h1>
           <p className="text-gray-300 font-medium text-sm flex items-center justify-center">
-            <Link to="/" className="cursor-pointer hover:text-orange-500 transition-colors">
+            <Link href="/" className="cursor-pointer hover:text-orange-500 transition-colors">
               Home
             </Link>
             <span className="text-orange-500 mx-2 font-bold">/</span>
@@ -49,10 +49,10 @@ export default function AboutPage() {
             <div className="lg:w-1/2">
               <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-8">Overview</h1>
               <p className="text-gray-600 leading-relaxed text-lg mb-6">
-                Graphics.lk is a dynamic Graphics Design Agency in Sri Lanka offering a full spectrum of comprehensive graphic designing solutions, including web design and development, social media marketing, and more. Our expertise extends beyond traditional graphic design, allowing us to create captivating websites and engaging social media campaigns that enhance user experience and elevate brand visibility.
+                rexadesigns.lk is a dynamic Graphic Design agency in Sri Lanka, offering a full range of creative design solutions including logo design, social media creatives, banners, business cards, and brand identity development. We go beyond basic design to craft visually compelling assets that capture attention, communicate your message clearly, and strengthen your brand presence.
               </p>
               <p className="text-gray-600 leading-relaxed text-lg">
-                By seamlessly integrating modern technologies with fine art principles, we deliver innovative solutions tailored to meet our clients&apos; unique needs, budget, and timeframe. With Graphics.lk, you can trust that your digital presence will stand out in today&apos;s competitive landscape.
+                By blending modern design trends with creative strategy, we deliver high quality visuals tailored to your unique needs, budget, and timeline. With rexadesigns.lk, you can be confident that your brand will stand out with impactful and professional design solutions.
               </p>
             </div>
           </div>
@@ -65,11 +65,14 @@ export default function AboutPage() {
             <div className="lg:w-1/2">
               <h2 className="text-4xl font-black text-gray-900 mb-8">Founder Message</h2>
               <p className="text-gray-600 text-lg leading-relaxed italic mb-10 border-l-4 border-orange-500 pl-6">
-                &ldquo;I've dedicated over two decades to pioneering digital marketing and design solutions that empower businesses in Sri Lanka and beyond. Our mission is to deliver exceptional, innovative services tailored to each client&apos;s unique needs, ensuring their brand stands out in today&apos;s competitive market. Join us in transforming your vision into reality with creativity and precision at the helm.&rdquo;
+                &ldquo;Over the past five years, we’ve built rexadesigns.lk on a foundation of creativity, passion, and results. Our goal has always been to help businesses stand out through impactful graphic design from logos and brand identity to social media creatives and marketing materials.
+                <br />
+                We believe great design is more than just visuals; it’s about creating meaningful connections and delivering real value. By blending creativity with strategy, we craft solutions that not only look exceptional but also elevate brands and communicate their story effectively.
+                <br />
+                At rexadesigns.lk, every project is an opportunity to turn ideas into powerful visual experiences. We are committed to delivering high quality, tailored designs that bring your vision to life with precision and purpose.&rdquo;
               </p>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-100 shadow-sm">
+              <div className="flex items-center space-x-6">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-100 shadow-sm">
                   <img
                     src="/images/founder.svg"
                     alt="Founder"
@@ -80,7 +83,7 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900">Noshan Maddumage</h4>
+                  <h4 className="text-xl font-bold text-gray-900">Mr. Sachira Saumya Lakshan</h4>
                   <p className="text-gray-500 font-medium">Founder</p>
                 </div>
               </div>
@@ -94,7 +97,7 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Mission</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    To provide innovative and effective integrated brand marketing and public relations solutions which help our clients grow their businesses in realizing their cherished marketing goals in keeping with modern trends.
+                    To deliver innovative and effective graphic design solutions that empower brands to grow, enhance their visibility, and achieve their marketing goals while staying aligned with modern design trends.
                   </p>
                 </div>
               </div>
@@ -106,7 +109,7 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">Our Vision</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Delivering results-oriented brand marketing programs and public relation campaigns that enhance our clients&apos; awareness, with a view to improve their sales and foster their growth.
+                    To be a leading creative design agency recognized for delivering impactful, results-driven visual solutions that enhance brand awareness, strengthen market presence, and drive sustainable business growth.
                   </p>
                 </div>
               </div>
@@ -124,11 +127,11 @@ export default function AboutPage() {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-4">Our Address</h4>
               <p className="text-gray-500 text-sm leading-relaxed">
-                No 460, Thalawathugoda Road,
+                429/C, Angampitiya,
                 <br />
-                Madiwela, Kotte,
+                Padukka,
                 <br />
-                Colombo - Sri Lanka.
+                Colombo-Sri Lanka.
               </p>
             </div>
 
@@ -138,9 +141,7 @@ export default function AboutPage() {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-4">Contact Info</h4>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Main Email: hello@graphics.lk
-                <br />
-                Phone: +94 711888844
+                Phone: +9475 762 2259
               </p>
             </div>
 
@@ -150,9 +151,7 @@ export default function AboutPage() {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-4">Our Support</h4>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Main Support: Support@graphics.lk
-                <br />
-                Sales: Sales@graphics.lk
+                Main Support: rexadesigns@gmail.com
               </p>
             </div>
           </div>
