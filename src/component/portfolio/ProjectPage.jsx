@@ -5,18 +5,31 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function ProjectPage({ portfolioProjects }) {
-  const { projectId } = useParams();
+  const params = useParams();
+  const categorySlug = params.categorySlug || params.projectId;
   const router = useRouter();
-  const selectedProject = portfolioProjects.find((project) => project.id === Number(projectId));
+  
+  const selectedProject = portfolioProjects.find((project) => {
+    if (project.id === Number(categorySlug)) return true;
+    const slug = project.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    return slug === categorySlug;
+  });
+
+  const getCategorySlug = (project) => {
+    if (!project) return '';
+    return project.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  };
+  const resolvedSlug = getCategorySlug(selectedProject) || categorySlug;
+
   const [currentPage, setCurrentPage] = useState(1);
 
   // Reset page to 1 when project changes
   useEffect(() => {
     setCurrentPage(1);
-    if (!selectedProject) {
+    if (!selectedProject && portfolioProjects.length > 0) {
       router.replace('/portfolio');
     }
-  }, [projectId, selectedProject, router]);
+  }, [categorySlug, selectedProject, router, portfolioProjects]);
 
   const itemsPerPage = 9;
   const totalItems = selectedProject?.gallery?.length || 0;
@@ -68,26 +81,35 @@ export default function ProjectPage({ portfolioProjects }) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {currentGalleryItems.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100"
-                  >
-                    <div className="h-64 overflow-hidden">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
+                {currentGalleryItems.map((item, idx) => {
+                  const actualIndex = startIndex + idx;
+                  return (
+                    <Link
+                      key={idx}
+                      href={`/portfolio/${resolvedSlug}/${actualIndex}`}
+                      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 hover:-translate-y-1 transition-all duration-300 block group"
+                    >
+                      <div className="h-64 overflow-hidden bg-gray-50">
+                        <img
+                          src={item.img}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
 
-                    <div className="p-5 text-center">
-                      <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                    </div>
-                  </div>
-                ))}
+                      <div className="p-5 text-center">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">
+                          {item.title}
+                        </h3>
+                        <span className="text-xs text-orange-500 font-semibold uppercase mt-2 inline-block">
+                          View details &rarr;
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {totalPages > 1 && (

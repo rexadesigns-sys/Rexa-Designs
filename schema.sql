@@ -52,4 +52,102 @@ INSERT INTO portfolio (title, category, img, "desc", gallery, hide_from_portfoli
 ('Elevate Your Digital Presence', 'Banner Designs', '/images/Banner Mockup.webp', 'A gallery of custom-scaled banners optimized to deliver a seamless and immersive first impression for the modern digital storefront.', '[{"title": "Touch Of Gold Avurudu Banner", "img": "/images/Touch of gold avurudu banner.webp"}, {"title": "NSBPAY Banner", "img": "/images/NSBPAY Banner.webp"}]'::jsonb, false),
 ('Your Professional Story, Hand Delivered', 'Business Cards', '/images/Business Card Mockup.webp', 'A gallery of custom business card layouts designed to balance clinical precision with creative flair for the modern professional.', '[{"title": "Juki Center Business Card", "img": "/images/Juki Center Business Card.webp"}]'::jsonb, false),
 ('Focused, Consistent Vision', 'Other Designs', '/images/Other Mockup.webp', 'A curated selection of creative assets developed to provide a comprehensive visual language that evolves with a brand’s growing needs.', '[{"title": "Touch Of Gold T shirt", "img": "/images/Touch Of Gold Tshirt.webp"}, {"title": "Touch Of Gold Lanyard", "img": "/images/Touch Of Gold Lanyard.webp"}, {"title": "Touch Of Gold Id", "img": "/images/Touch Of Gold Id.webp"}]'::jsonb, false),
-('Elegance in Every Detail', 'Wedding Invitation', '/images/wedding_mockup.png', 'A curated gallery of elegant wedding invitations, crafted with premium textures and gold foil embossing.', '[{"title": "Royal Gold Invitation", "img": "/images/wedding_mockup.png"}]'::jsonb, false);
+('Elegance in Every Detail', 'Wedding Invitation', '/images/wedding_mockup.png', 'A curated gallery of elegant wedding invitations, crafted with premium textures and gold foil embossing.', '[{"title": "Royal Gold Invitation", "img": "/images/wedding_mockup.png"}, {"title": "Watercolor Floral Invitation", "img": "/images/wedding_mockup_2.png"}, {"title": "Emerald Foil Invitation", "img": "/images/wedding_mockup_3.png"}]'::jsonb, false)
+ON CONFLICT DO NOTHING; -- in case we run it multiple times or modify/seed differently
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
+ALTER TABLE portfolio ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for blog_posts
+DROP POLICY IF EXISTS "Allow public read access for blog_posts" ON blog_posts;
+CREATE POLICY "Allow public read access for blog_posts"
+  ON blog_posts
+  FOR SELECT
+  TO public
+  USING (true);
+
+DROP POLICY IF EXISTS "Allow authenticated insert for blog_posts" ON blog_posts;
+CREATE POLICY "Allow authenticated insert for blog_posts"
+  ON blog_posts
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated update for blog_posts" ON blog_posts;
+CREATE POLICY "Allow authenticated update for blog_posts"
+  ON blog_posts
+  FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated delete for blog_posts" ON blog_posts;
+CREATE POLICY "Allow authenticated delete for blog_posts"
+  ON blog_posts
+  FOR DELETE
+  TO authenticated
+  USING (true);
+
+-- RLS Policies for testimonials
+DROP POLICY IF EXISTS "Allow public read access for testimonials" ON testimonials;
+CREATE POLICY "Allow public read access for testimonials"
+  ON testimonials
+  FOR SELECT
+  TO public
+  USING (true);
+
+DROP POLICY IF EXISTS "Allow authenticated insert for testimonials" ON testimonials;
+CREATE POLICY "Allow authenticated insert for testimonials"
+  ON testimonials
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated update for testimonials" ON testimonials;
+CREATE POLICY "Allow authenticated update for testimonials"
+  ON testimonials
+  FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated delete for testimonials" ON testimonials;
+CREATE POLICY "Allow authenticated delete for testimonials"
+  ON testimonials
+  FOR DELETE
+  TO authenticated
+  USING (true);
+
+-- RLS Policies for portfolio
+DROP POLICY IF EXISTS "Allow public read access for portfolio" ON portfolio;
+CREATE POLICY "Allow public read access for portfolio"
+  ON portfolio
+  FOR SELECT
+  TO public
+  USING (true);
+
+DROP POLICY IF EXISTS "Allow authenticated insert for portfolio" ON portfolio;
+CREATE POLICY "Allow authenticated insert for portfolio"
+  ON portfolio
+  FOR INSERT
+  TO authenticated
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated update for portfolio" ON portfolio;
+CREATE POLICY "Allow authenticated update for portfolio"
+  ON portfolio
+  FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated delete for portfolio" ON portfolio;
+CREATE POLICY "Allow authenticated delete for portfolio"
+  ON portfolio
+  FOR DELETE
+  TO authenticated
+  USING (true);
+
+

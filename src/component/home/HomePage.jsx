@@ -64,32 +64,32 @@ export default function HomePage({
               {
                 title: 'Logo Designs',
                 img: '/images/Logo Mockup.svg',
-                link: '/portfolio/1'
+                link: '/portfolio/logo-designs'
               },
               {
                 title: 'Social Media Posts',
                 img: '/images/Social Media Mockup.svg',
-                link: '/portfolio/2'
+                link: '/portfolio/social-media-posts'
               },
               {
                 title: 'Banner Designs',
                 img: '/images/Banner Mockup.webp',
-                link: '/portfolio/3'
+                link: '/portfolio/banner-designs'
               },
               {
                 title: 'Business Cards',
                 img: '/images/Business Card Mockup.webp',
-                link: '/portfolio/4'
+                link: '/portfolio/business-cards'
               },
               {
                 title: 'Wedding Invitation',
                 img: '/images/wedding_mockup.png',
-                link: '/portfolio/6'
+                link: '/portfolio/wedding-invitation'
               },
               {
                 title: 'Other Designs',
                 img: '/images/Other Mockup.webp',
-                link: '/portfolio/5'
+                link: '/portfolio/other-designs'
               }
             ].map((service, index) => (
               <Link

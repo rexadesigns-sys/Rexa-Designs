@@ -118,7 +118,9 @@ export const portfolioProjects = [
     challenge: 'Designing invitation card mockups that represent high luxury without sacrificing loading speed.',
     solution: 'Optimized high-resolution textures and foil layer details into a lightweight responsive web gallery.',
     gallery: [
-      { title: 'Royal Gold Invitation', img: '/images/wedding_mockup.png' }
+      { title: 'Royal Gold Invitation', img: '/images/wedding_mockup.png' },
+      { title: 'Watercolor Floral Invitation', img: '/images/wedding_mockup_2.png' },
+      { title: 'Emerald Foil Invitation', img: '/images/wedding_mockup_3.png' }
     ]
   }
 ];

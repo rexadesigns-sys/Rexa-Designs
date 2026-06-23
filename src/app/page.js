@@ -139,7 +139,8 @@ export default function Home() {
 
   const openProject = (project, e) => {
     if (e) e.preventDefault();
-    router.push(`/portfolio/${project.id}`);
+    const slug = project.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    router.push(`/portfolio/${slug}`);
   };
 
   return (
