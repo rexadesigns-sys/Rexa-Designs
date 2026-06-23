@@ -86,11 +86,12 @@ export default function AdminPanel() {
   const [isSupabaseConfigured, setIsSupabaseConfigured] = useState(false);
 
   useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     const configured = !!(
       process.env.NEXT_PUBLIC_SUPABASE_URL &&
       process.env.NEXT_PUBLIC_SUPABASE_URL !== 'your-supabase-url' &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY !== 'your-supabase-anon-key'
+      key &&
+      key !== 'your-supabase-anon-key'
     );
     setIsSupabaseConfigured(configured);
   }, []);
@@ -114,11 +115,12 @@ export default function AdminPanel() {
 
     // 2. Fetch from Supabase if configured, otherwise build fallback lists
     async function loadData() {
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
       const configured = !!(
         process.env.NEXT_PUBLIC_SUPABASE_URL &&
         process.env.NEXT_PUBLIC_SUPABASE_URL !== 'your-supabase-url' &&
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY !== 'your-supabase-anon-key'
+        key &&
+        key !== 'your-supabase-anon-key'
       );
 
       if (configured) {
@@ -155,7 +157,7 @@ export default function AdminPanel() {
         // Fetch Projects
         try {
           const { data, error } = await supabase
-            .from('portfolio_projects')
+            .from('portfolio')
             .select('*')
             .order('created_at', { ascending: false });
           if (!error && data && data.length > 0) {
@@ -301,7 +303,7 @@ export default function AdminPanel() {
     if (isSupabaseConfigured) {
       try {
         const { error } = await supabase
-          .from('portfolio_projects')
+          .from('portfolio')
           .insert([newProject]);
         if (error) throw error;
 
@@ -347,7 +349,7 @@ export default function AdminPanel() {
       if (isSupabaseConfigured) {
         try {
           const { error } = await supabase
-            .from('portfolio_projects')
+            .from('portfolio')
             .delete()
             .eq('id', id);
           if (error) throw error;

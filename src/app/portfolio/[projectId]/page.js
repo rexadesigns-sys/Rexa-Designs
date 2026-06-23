@@ -12,7 +12,7 @@ export default function ProjectDetail() {
     async function fetchProjects() {
       try {
         const { data: projectsData } = await supabase
-          .from('portfolio_projects')
+          .from('portfolio')
           .select('*')
           .order('created_at', { ascending: false });
 

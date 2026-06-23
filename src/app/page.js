@@ -31,7 +31,7 @@ export default function Home() {
 
         // Fetch projects
         const { data: projectsData } = await supabase
-          .from('portfolio_projects')
+          .from('portfolio')
           .select('*')
           .order('created_at', { ascending: false });
 
