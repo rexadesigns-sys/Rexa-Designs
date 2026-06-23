@@ -1,3 +1,8 @@
+-- Drop tables if they exist to ensure clean schema recreation and avoid type/constraint mismatches
+DROP TABLE IF EXISTS portfolio CASCADE;
+DROP TABLE IF EXISTS testimonials CASCADE;
+DROP TABLE IF EXISTS blog_posts CASCADE;
+
 -- Create blog_posts table
 CREATE TABLE IF NOT EXISTS blog_posts (
   id TEXT PRIMARY KEY,
