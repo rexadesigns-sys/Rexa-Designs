@@ -64,11 +64,11 @@ export default function Footer() {
             <Link
               href="/"
               className="inline-flex items-center mb-6"
-              aria-label="Graphics.lk home"
+              aria-label="Rexadesigns.lk home"
             >
               <img
                 src="/images/Rexa Designs Logo.svg"
-                alt="Graphics.lk"
+                alt="Rexadesigns.lk"
                 className="h-15 w-auto brightness-0 invert"
               />
             </Link>
@@ -135,7 +135,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p>Copyright 2026 - Graphics.lk All Right Reserved.</p>
+          <p>Copyright 2026 - Rexadesigns.lk All Right Reserved.</p>
         </div>
       </div>
     </footer>
