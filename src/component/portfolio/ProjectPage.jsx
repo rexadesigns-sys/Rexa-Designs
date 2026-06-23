@@ -1,10 +1,44 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+"use client";
+
+import { useState, useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function ProjectPage({ portfolioProjects }) {
-  const { projectId } = useParams();
-  const selectedProject = portfolioProjects.find((project) => project.id === Number(projectId));
+  const params = useParams();
+  const categorySlug = params.categorySlug || params.projectId;
+  const router = useRouter();
+  
+  const selectedProject = portfolioProjects.find((project) => {
+    if (project.id === Number(categorySlug)) return true;
+    const slug = project.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    return slug === categorySlug;
+  });
 
-  if (!selectedProject) return <Navigate to="/portfolio" replace />;
+  const getCategorySlug = (project) => {
+    if (!project) return '';
+    return project.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  };
+  const resolvedSlug = getCategorySlug(selectedProject) || categorySlug;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset page to 1 when project changes
+  useEffect(() => {
+    setCurrentPage(1);
+    if (!selectedProject && portfolioProjects.length > 0) {
+      router.replace('/portfolio');
+    }
+  }, [categorySlug, selectedProject, router, portfolioProjects]);
+
+  const itemsPerPage = 9;
+  const totalItems = selectedProject?.gallery?.length || 0;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentGalleryItems = selectedProject?.gallery?.slice(startIndex, startIndex + itemsPerPage) || [];
+
+  if (!selectedProject) return null;
 
   return (
     <>
@@ -25,11 +59,11 @@ export default function ProjectPage({ portfolioProjects }) {
           </h1>
 
           <p className="text-gray-300 font-medium text-sm flex items-center justify-center space-x-2">
-            <Link to="/" className="cursor-pointer hover:text-orange-500 font-bold">
+            <Link href="/" className="cursor-pointer hover:text-orange-500 font-bold">
               Home
             </Link>
             <span>/</span>
-            <Link to="/portfolio" className="cursor-pointer hover:text-orange-500 font-bold">
+            <Link href="/portfolio" className="cursor-pointer hover:text-orange-500 font-bold">
               Portfolio
             </Link>
             <span>/</span>
@@ -47,31 +81,61 @@ export default function ProjectPage({ portfolioProjects }) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {selectedProject.gallery.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100"
-                  >
-                    <div className="h-64 overflow-hidden">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
+                {currentGalleryItems.map((item, idx) => {
+                  const actualIndex = startIndex + idx;
+                  return (
+                    <Link
+                      key={idx}
+                      href={`/portfolio/${resolvedSlug}/${actualIndex}`}
+                      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 hover:-translate-y-1 transition-all duration-300 block group"
+                    >
+                      <div className="h-64 overflow-hidden bg-gray-50">
+                        <img
+                          src={item.img}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
 
-                    <div className="p-5 text-center">
-                      <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                    </div>
-                  </div>
-                ))}
+                      <div className="p-5 text-center">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">
+                          {item.title}
+                        </h3>
+                        <span className="text-xs text-orange-500 font-semibold uppercase mt-2 inline-block">
+                          View details &rarr;
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
+
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center mt-12 space-x-2">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                    <button
+                      key={pageNumber}
+                      onClick={() => {
+                        setCurrentPage(pageNumber);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`h-10 w-10 border text-lg font-medium transition-colors ${
+                        currentPage === pageNumber
+                          ? 'bg-[#FF6900] border-[#FF6900] text-white'
+                          : 'border-[#FF6900] text-[#FF6900] hover:bg-[#FF6900] hover:text-white'
+                      }`}
+                    >
+                      {pageNumber}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="text-center mt-12">
                 <Link
-                  to="/portfolio"
+                  href="/portfolio"
                   className="border-2 border-orange-500 text-orange-500 px-8 py-3 rounded font-bold hover:bg-orange-500 hover:text-white"
                 >
                   Back to Portfolio

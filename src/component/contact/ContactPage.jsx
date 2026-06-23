@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { MapPin, Phone, Upload, Check, Loader2 } from 'lucide-react';
 
 export default function ContactPage({
@@ -63,7 +63,7 @@ export default function ContactPage({
       <section className="bg-gray-900 text-white py-20 lg:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <img
-            src="/images/agency-hero.svg"
+            src="/images/Contact Us.svg"
             className="w-full h-full object-cover"
             alt="Contact Hero"
             loading="eager"
@@ -75,7 +75,7 @@ export default function ContactPage({
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-black mb-4">Contact Us</h1>
           <p className="text-gray-300 font-medium text-sm flex items-center justify-center">
-            <Link to="/" className="cursor-pointer hover:text-orange-500 transition-colors">
+            <Link href="/" className="cursor-pointer hover:text-orange-500 transition-colors">
               Home
             </Link>
             <span className="text-orange-500 mx-2 font-bold">/</span>
@@ -89,10 +89,10 @@ export default function ContactPage({
           <div className=" flex flex-col lg:flex-row bg-orange-500 rounded-2xl shadow-2xl overflow-visible ">
             <div className="bg-orange-500 text-white p-8 lg:p-12 lg:w-2/5 flex flex-col justify-start lg:sticky lg:top-28 lg:self-start rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl z-10">
               <h2 className="text-3xl font-bold mb-6 leading-tight">
-                Let's Discuss Your Next Project
+                Let&apos;s Discuss Your Next Project
               </h2>
               <p className="text-orange-50 mb-10 leading-relaxed">
-                Fill out the form for a free consultation. Our team will get back to you with the best solutions.
+                Fill out the form with your requirements, and we&apos;ll get back to you with the best solution.
               </p>
 
               <div className="space-y-6">
@@ -100,7 +100,7 @@ export default function ContactPage({
                   <MapPin size={24} className="mr-4 mt-1" />
                   <div>
                     <h4 className="font-bold text-lg">Office Location</h4>
-                    <p className="text-orange-100 text-sm">Thalawathugoda, Colombo, Sri Lanka</p>
+                    <p className="text-orange-100 text-sm">429/C, Angampitiya, Padukka</p>
                   </div>
                 </div>
 
@@ -108,7 +108,7 @@ export default function ContactPage({
                   <Phone size={24} className="mr-4 mt-1" />
                   <div>
                     <h4 className="font-bold text-lg">Call Us</h4>
-                    <p className="text-orange-100 text-sm">+947 11 88 8844</p>
+                    <p className="text-orange-100 text-sm">+9475 762 2259</p>
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function ContactPage({
                       value={formData.firstName}
                       onChange={handleInputChange}
                       className="w-full bg-[#f8f9fb] border border-[#e5e7eb] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b7fff] transition-all"
-                      placeholder="John"
+                      placeholder="Ex:Vinod"
                       required
                     />
                   </div>
@@ -144,7 +144,7 @@ export default function ContactPage({
                       value={formData.lastName}
                       onChange={handleInputChange}
                       className="w-full bg-[#f8f9fb] border border-[#e5e7eb] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b7fff] transition-all"
-                      placeholder="Doe"
+                      placeholder="Ex:Lakshan"
                       required
                     />
                   </div>
@@ -160,7 +160,7 @@ export default function ContactPage({
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full bg-[#f8f9fb] border border-[#e5e7eb] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b7fff] transition-all"
-                    placeholder="john@example.com"
+                    placeholder="Ex:vinod@gmail.com"
                     required
                   />
                 </div>
@@ -175,7 +175,7 @@ export default function ContactPage({
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full bg-[#f8f9fb] border border-[#e5e7eb] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b7fff] transition-all"
-                    placeholder="+94 77 000 0000"
+                    placeholder="Ex:0752869875"
                   />
                 </div>
 
@@ -187,10 +187,11 @@ export default function ContactPage({
                     onChange={handleInputChange}
                     className="w-full bg-[#f8f9fb] border border-[#e5e7eb] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#5b7fff] transition-all appearance-none cursor-pointer"
                   >
-                    <option>General Inquiry</option>
+                    <option>Creative Design Support</option>
                     <option>Request a Quote</option>
-                    <option>Support</option>
-                    <option>Careers</option>
+                    <option>Start My Brand</option>
+                    <option>Redesign Request</option>
+                    <option>Update Existing Design </option>
                   </select>
                 </div>
 
@@ -201,10 +202,9 @@ export default function ContactPage({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
                       'Logo Design',
-                      'Web Design',
-                      'Company Profile',
-                      'Packaging Design',
-                      'Social Media',
+                      'Social Media Post',
+                      'Banner Design',
+                      'Business Card',
                       'Other'
                     ].map((service, index) => (
                       <label

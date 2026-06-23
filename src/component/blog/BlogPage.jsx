@@ -1,9 +1,11 @@
+"use client";
+
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 import { blogPosts } from '../../data/blogPosts';
 
-export default function BlogPage() {
+export default function BlogPage({ blogPostsList = [] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
@@ -11,10 +13,11 @@ export default function BlogPage() {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  const activePosts = blogPostsList && blogPostsList.length > 0 ? blogPostsList : blogPosts;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+  const currentPosts = activePosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(activePosts.length / postsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -66,7 +69,7 @@ export default function BlogPage() {
                 </div>
                 
                 <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
-                  <Link to={`/blog/${post.id}`}>
+                  <Link href={`/blog/${post.id}`}>
                     {post.title}
                   </Link>
                 </h2>
@@ -77,7 +80,7 @@ export default function BlogPage() {
                 
                 <div className="mt-auto pt-4 border-t border-gray-100 flex justify-end">
                   <Link
-                    to={`/blog/${post.id}`}
+                    href={`/blog/${post.id}`}
                     className="text-orange-500 hover:text-orange-600 font-semibold text-sm flex items-center inline-flex group-hover:translate-x-1 transition-transform"
                   >
                     Read Blog <ArrowRight size={16} className="ml-2" />
