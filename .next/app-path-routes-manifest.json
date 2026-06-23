@@ -3,11 +3,11 @@
   "/sitemap.xml/route": "/sitemap.xml",
   "/about/page": "/about",
   "/blog/[id]/page": "/blog/[id]",
-  "/blog/page": "/blog",
   "/contact/page": "/contact",
+  "/blog/page": "/blog",
   "/page": "/",
   "/portfolio/[categorySlug]/[itemIndex]/page": "/portfolio/[categorySlug]/[itemIndex]",
   "/portfolio/[categorySlug]/page": "/portfolio/[categorySlug]",
-  "/portfolio/page": "/portfolio",
-  "/pricing/page": "/pricing"
+  "/pricing/page": "/pricing",
+  "/portfolio/page": "/portfolio"
 }
