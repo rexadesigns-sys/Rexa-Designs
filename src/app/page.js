@@ -55,12 +55,12 @@ export default function Home() {
   }, []);
 
   const categoryOrder = [
-    'Logo Designs',
-    'Social Media Posts',
     'Banner Designs',
     'Business Cards',
-    'Wedding Invitation',
-    'Other Designs'
+    'Logo Designs',
+    'Other Designs',
+    'Social Media Posts',
+    'Wedding Invitation'
   ];
 
   const recentWorksList = categoryOrder.map(catName => {
