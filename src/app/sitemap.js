@@ -37,20 +37,25 @@ export default async function sitemap() {
 
   projects.forEach((project) => {
     const slug = project.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    const projectImgUrl = project.img.startsWith('http') ? project.img : `${BASE_URL}${project.img}`;
+    
     categoryUrls.push({
       url: `${BASE_URL}/portfolio/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
+      images: [projectImgUrl],
     });
 
     const gallery = project.gallery || [];
-    gallery.forEach((_, idx) => {
+    gallery.forEach((item, idx) => {
+      const itemImgUrl = item.img.startsWith('http') ? item.img : `${BASE_URL}${item.img}`;
       itemUrls.push({
         url: `${BASE_URL}/portfolio/${slug}/${idx}`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.6,
+        images: [itemImgUrl],
       });
     });
   });
@@ -81,11 +86,14 @@ export default async function sitemap() {
       postDate = new Date(post.date);
     }
     
+    const blogImgUrl = post.img.startsWith('http') ? post.img : `${BASE_URL}${post.img}`;
+    
     return {
       url: `${BASE_URL}/blog/${post.id}`,
       lastModified: isNaN(postDate.getTime()) ? new Date() : postDate,
       changeFrequency: 'monthly',
       priority: 0.7,
+      images: [blogImgUrl],
     };
   });
 
