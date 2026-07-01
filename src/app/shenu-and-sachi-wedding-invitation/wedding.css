@@ -1,15 +1,3 @@
-@theme {
-  --color-champagne: #F7E7CE;
-  --color-emerald: #046307;
-  --color-emerald-dark: #024204;
-  --color-emerald-light: #0a8f0e;
-  --color-gold: #D4AF37;
-  --color-gold-light: #f5d76e;
-
-  --font-serif: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-montserrat), sans-serif;
-}
-
 /* Scoped classes to prevent pollution of main website styling */
 .wedding-theme {
   min-height: 100vh;
