@@ -1,20 +1,133 @@
 {
   "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/app/_not-found/page-ae65e9449049fe11.js"
+    ],
     "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/css/c72a8eadd11ab8e7.css",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/layout-cdf7f45593ec3d6a.js"
+    ],
+    "/shenu-and-sachi-wedding-invitation/api/rsvp/route": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/app/shenu-and-sachi-wedding-invitation/api/rsvp/route-aac556852ddffb8c.js"
+    ],
+    "/sitemap.xml/route": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/app/sitemap.xml/route-aac556852ddffb8c.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/about/page-9fe10c4ea595245a.js"
+    ],
+    "/blog/[id]/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/44530001-f5212f80b137756d.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/445-bb6a4e9f6953b066.js",
+      "static/chunks/app/blog/[id]/page-410af5057770cbb1.js"
+    ],
+    "/blog/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/44530001-f5212f80b137756d.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/445-bb6a4e9f6953b066.js",
+      "static/chunks/app/blog/page-484dcb6aad4cadcd.js"
+    ],
+    "/contact/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/contact/page-eb4d5cdb473ec51d.js"
     ],
     "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/44530001-f5212f80b137756d.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/445-bb6a4e9f6953b066.js",
+      "static/chunks/app/page-363d83c324e32565.js"
+    ],
+    "/portfolio/[categorySlug]/[itemIndex]/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/44530001-f5212f80b137756d.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/445-bb6a4e9f6953b066.js",
+      "static/chunks/app/portfolio/[categorySlug]/[itemIndex]/page-055dc508dfedd21e.js"
     ],
     "/portfolio/[categorySlug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/portfolio/[categorySlug]/page.js"
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/44530001-f5212f80b137756d.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/445-bb6a4e9f6953b066.js",
+      "static/chunks/app/portfolio/[categorySlug]/page-9454575f7f91ed7b.js"
+    ],
+    "/portfolio/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/44530001-f5212f80b137756d.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/445-bb6a4e9f6953b066.js",
+      "static/chunks/app/portfolio/page-f6085a4a5c9ffd0d.js"
+    ],
+    "/pricing/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/619-ba102abea3e3d0e4.js",
+      "static/chunks/app/pricing/page-9fe10c4ea595245a.js"
+    ],
+    "/shenu-and-sachi-wedding-invitation/layout": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/css/dc4ac7438b76c96b.css",
+      "static/chunks/app/shenu-and-sachi-wedding-invitation/layout-0518ca213dd9570d.js"
+    ],
+    "/shenu-and-sachi-wedding-invitation/page": [
+      "static/chunks/webpack-41b093f897b45215.js",
+      "static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "static/chunks/255-98a0bdaa30757bda.js",
+      "static/chunks/main-app-05f4b403f4257894.js",
+      "static/chunks/app/shenu-and-sachi-wedding-invitation/page-7f6d1664b312d3fe.js"
     ]
   }
 }

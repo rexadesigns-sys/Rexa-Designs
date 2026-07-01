@@ -17,10 +17,14 @@
     "postcss": "^8.4.49",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "resend": "^6.16.0",
     "tailwindcss": "^4.0.0-beta.8"
   },
   "devDependencies": {
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
     "eslint": "^9.15.0",
-    "eslint-config-next": "^15.1.0"
+    "eslint-config-next": "^15.1.0",
+    "typescript": "^6.0.3"
   }
 }
