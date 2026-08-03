@@ -2,13 +2,13 @@ export default function Footer() {
   const contacts = [
     {
       name: "Chinthana Rukshan",
-      phone: "+94770623539",
-      displayPhone: "+94 77 062 3539",
+      phone: "+94776139828",
+      displayPhone: "+94 77 613 9828",
     },
     {
       name: "Gawrawa Vimukthi",
-      phone: "+947636663122",
-      displayPhone: "+94 76 366 63122",
+      phone: "+94765266624",
+      displayPhone: "+94 76 526 6624",
     },
   ];
 

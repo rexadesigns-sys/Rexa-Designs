@@ -1,4 +1,4 @@
-// File: C:\Users\User\Documents\GitHub\Rexa-Designs\src\app\shenu-and-sachi-wedding-invitation\page.tsx
+// File: E:\RexaOfficial\Rexa Designs\Rexa Designs Website\Rexa Designs\Rexa-Designs\src\app\shenu-and-sachi-wedding-invitation\page.tsx
 import * as entry from '../../../../src/app/shenu-and-sachi-wedding-invitation/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
