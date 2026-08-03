@@ -15,6 +15,16 @@
   }
 }
 
+@font-face {
+  font-family: 'Madina';
+  src: local('Madina'), local('Madina Script'), local('Madina-Script');
+  font-display: swap;
+}
+
+.font-madina {
+  font-family: 'Madina', 'Madina Script', var(--font-madina), 'Great Vibes', 'Alex Brush', cursive, serif !important;
+}
+
 .lightbox-active {
   overflow: hidden;
 }

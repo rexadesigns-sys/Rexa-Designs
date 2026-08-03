@@ -10,9 +10,12 @@ import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import Lightbox from "./components/Lightbox";
 import MusicPlayer from "./components/MusicPlayer";
+import LandingOverlay from "./components/LandingOverlay";
 
 export default function Home() {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [isOpened, setIsOpened] = useState(false);
+  const [shouldPlayMusic, setShouldPlayMusic] = useState(false);
 
   useEffect(() => {
     // Prevent browser from retaining scroll position on reload
@@ -23,14 +26,33 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    if (!isOpened) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpened]);
+
+  const handleOpenInvitation = () => {
+    setIsOpened(true);
+    setShouldPlayMusic(true);
+  };
+
   const handleImageClick = (url: string) => {
     setLightboxImage(url);
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-gray-800">
+    <div className="min-h-screen bg-[#FAF9F6] text-gray-800 relative">
+      {/* Landing Overlay Screen */}
+      <LandingOverlay onOpen={handleOpenInvitation} />
+
       {/* Background Music Player */}
-      <MusicPlayer />
+      <MusicPlayer shouldPlay={shouldPlayMusic} />
 
       {/* Main Sections */}
       <Hero />

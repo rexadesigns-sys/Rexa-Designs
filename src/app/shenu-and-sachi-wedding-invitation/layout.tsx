@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Montserrat } from "next/font/google";
+import { Playfair_Display, Montserrat, Great_Vibes } from "next/font/google";
 import "./wedding.css";
 
 const playfair = Playfair_Display({
@@ -13,6 +13,12 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   weight: ["300", "400", "500", "600"],
+});
+
+const madina = Great_Vibes({
+  subsets: ["latin"],
+  variable: "--font-madina",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +35,7 @@ export default function WeddingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`${playfair.variable} ${montserrat.variable} wedding-theme scroll-smooth selection:bg-gold/30 selection:text-emerald-dark`}>
+    <div className={`${playfair.variable} ${montserrat.variable} ${madina.variable} wedding-theme scroll-smooth selection:bg-gold/30 selection:text-emerald-dark`}>
       {children}
     </div>
   );

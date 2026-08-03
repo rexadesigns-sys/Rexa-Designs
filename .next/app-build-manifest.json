@@ -6,6 +6,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
     "/shenu-and-sachi-wedding-invitation/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,11 +21,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/shenu-and-sachi-wedding-invitation/page.js"
-    ],
-    "/shenu-and-sachi-wedding-invitation/api/rsvp/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/shenu-and-sachi-wedding-invitation/api/rsvp/route.js"
     ]
   }
 }

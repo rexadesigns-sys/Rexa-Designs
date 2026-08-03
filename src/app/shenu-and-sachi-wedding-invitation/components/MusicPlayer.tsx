@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Music, Pause } from "lucide-react";
 
-export default function MusicPlayer() {
+interface MusicPlayerProps {
+  shouldPlay?: boolean;
+}
+
+export default function MusicPlayer({ shouldPlay }: MusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -55,6 +59,15 @@ export default function MusicPlayer() {
       cleanListeners();
     };
   }, []);
+
+  useEffect(() => {
+    if (shouldPlay && audioRef.current && audioRef.current.paused) {
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.log("Music play error:", err));
+    }
+  }, [shouldPlay]);
 
   const toggleMusic = (e: React.MouseEvent) => {
     e.stopPropagation();

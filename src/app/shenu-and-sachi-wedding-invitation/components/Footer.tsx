@@ -85,8 +85,8 @@ export default function Footer() {
 
         <div className="w-24 h-px bg-gold/30 my-8"></div>
 
-        <h2 className="text-3xl md:text-4xl font-serif text-gold-light mb-4">
-          Sachira <span className="text-champagne italic">&amp;</span> Shenali
+        <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-madina text-transparent bg-clip-text bg-gradient-to-r from-[#F7E7CE] via-[#D4AF37] to-[#F7E7CE] mb-4 py-2 px-4 leading-[1.15] overflow-visible drop-shadow-[0_2px_20px_rgba(212,175,55,0.4)]">
+          Sachira <span className="font-light italic text-gold-light">&amp;</span> Shenali
         </h2>
 
         <p className="text-xs uppercase tracking-widest text-emerald-light mb-8 font-semibold">
