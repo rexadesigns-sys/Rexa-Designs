@@ -56,26 +56,31 @@ export default function Journey({ onImageClick }: JourneyProps) {
         </div>
 
         {/* Love Story Text */}
-        <div className="max-w-3xl mx-auto px-4 text-gray-600 font-light text-base md:text-lg leading-relaxed space-y-6 text-center">
+        <div className="max-w-3xl mx-auto px-4 text-black-600 font-regular light text-base md:text-lg leading-relaxed space-y-6 text-center">
           <p>
-            It all began on a fateful day in a tuition class. That&apos;s where Sachi and Shenu first crossed paths. What
-            began as a casual meeting soon bloomed into something much more. On a sunny October 21st, 2016, Sachi
-            gathered the courage to ask Shenu out, and that simple question marked the beginning of a beautiful journey
-            together.
+            Their story started in a simple way. Shenu needed help with a university project, and a friend connected her with Sachira.
+            What began as an ordinary conversation slowly grew into something special over time. The real turning point came on the day
+            of one of Shenu's university exams. Sachira showed up to surprise her. After a warm, heartfelt conversation that day,
+            Sachira finally told Shenu how he felt he told her he loved her. Shenu's answer came on another day, when she went to a park
+            with a close friend and the friend's boyfriend. In that simple, joyful moment, Shenu told Sachira that she felt the same way.
+            That day, in that garden, was where their beautiful journey truly began.
+
           </p>
           <p>
-            As the years passed, their love only grew stronger. Seven years later, on October 21, 2023, Sachi and his
-            family made a special visit to Shenu’s home. It was the day that sealed their commitment, with both
-            families blessing our love. But Sachi had one more beautiful moment planned. He wanted to make it official in
-            the most romantic way.
+            From then on, they grew closer with every new memory. Time passed, and one important day arrived the day their families met
+            each other for the first time. Sachira and his family visited Shenu's home, and both families gave their blessing to the
+            relationship. That day, their love was made official in the eyes of their families.
+
           </p>
           <p>
-            Exactly one year later, on October 21, 2024, Sachi proposed to Shenu, asking the question that would lead
-            to a happily ever after: &ldquo;Will you marry me?&rdquo; With love in their hearts and excitement for the future, they
-            are now looking forward to tying the knot and beginning the next chapter of their forever.
+            After that, they began preparing for their wedding. But before that, Sachira wanted to create one more special memory for
+            Shenu a proposal. Instead of simply asking, "Will you marry me?", Sachira planned a beautiful moment to ask that question
+            the right way. Now, filled with love and hope for the future, Sachira and Shenu are ready to begin the next chapter of their
+            lives as husband and wife.
+
           </p>
-          <p className="font-serif italic text-emerald-dark text-lg md:text-xl pt-4">
-            Join us as we celebrate our love story and embark on this beautiful journey together.
+          <p className="font-serif italic text-[#4A2A20] text-lg md:text-xl pt-4">
+            We would love for you to join us and celebrate this beautiful journey with us.
           </p>
         </div>
       </div>
