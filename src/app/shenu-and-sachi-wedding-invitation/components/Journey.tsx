@@ -10,15 +10,15 @@ export default function Journey({ onImageClick }: JourneyProps) {
 
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/How%20it%20began%20photo%201.avif",
       alt: "Journey Moment 1",
     },
     {
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/How%20it%20began%20photo%202.avif",
       alt: "Journey Moment 2",
     },
     {
-      src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/How%20it%20began%20photo%203.avif",
       alt: "Journey Moment 3",
     },
   ];
@@ -51,7 +51,6 @@ export default function Journey({ onImageClick }: JourneyProps) {
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-emerald/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           ))}
         </div>

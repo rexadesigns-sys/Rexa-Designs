@@ -57,7 +57,6 @@ export default function Gallery({ onImageClick }: GalleryProps) {
                 className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-emerald/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           ))}
         </div>
