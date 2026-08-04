@@ -8,7 +8,7 @@ export default function Gallery({ onImageClick }: GalleryProps) {
 
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%201.avif",
       alt: "Pre-Shoot Gallery 1",
     },
     {
@@ -16,11 +16,11 @@ export default function Gallery({ onImageClick }: GalleryProps) {
       alt: "Pre-Shoot Gallery 2",
     },
     {
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%203.avif",
       alt: "Pre-Shoot Gallery 3",
     },
     {
-      src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%202.avif",
       alt: "Pre-Shoot Gallery 4",
     },
     {

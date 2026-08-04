@@ -24,14 +24,14 @@ export default function LandingOverlay({ onOpen }: LandingOverlayProps) {
     // 2. Restart video from 0 and transition to 'cleared' phase (slowly remove blur)
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
     setPhase("cleared");
 
-    // 3. Allow visitor to watch full HD video play for 1 full run (7 seconds)
+    // 3. Allow visitor to watch full HD video play for 1 full run (5 seconds)
     setTimeout(() => {
       setPhase("black");
-    }, 7000);
+    }, 5000);
   };
 
   // 4. When phase becomes "black", wait 1s for smooth black fade transition then unmount
@@ -55,15 +55,13 @@ export default function LandingOverlay({ onOpen }: LandingOverlayProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center overflow-hidden transition-all duration-1000 ease-in-out ${
-        phase === "black" ? "opacity-0 pointer-events-none scale-105" : "opacity-100 scale-100"
-      }`}
+      className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center overflow-hidden transition-all duration-1000 ease-in-out ${phase === "black" ? "opacity-0 pointer-events-none scale-105" : "opacity-100 scale-100"
+        }`}
     >
       {/* Black Fadeout Transition Layer (Activates during 'black' phase) */}
       <div
-        className={`absolute inset-0 bg-black z-30 transition-opacity duration-1000 pointer-events-none ${
-          phase === "black" ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 bg-black z-30 transition-opacity duration-1000 pointer-events-none ${phase === "black" ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       {/* Solid Black Fallback Background before video loads */}
@@ -79,34 +77,30 @@ export default function LandingOverlay({ onOpen }: LandingOverlayProps) {
         preload="auto"
         onLoadedData={() => setIsVideoLoaded(true)}
         onCanPlay={() => setIsVideoLoaded(true)}
-        className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-700 ${
-          isVideoLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-700 ${isVideoLoaded ? "opacity-100" : "opacity-0"
+          }`}
       >
         <source src="/shenu-and-sachi-wedding-invitation/intro_video.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Blur Overlay (Fades out slowly duration-1500 when user clicks open) */}
       <div
-        className={`absolute inset-0 bg-black/60 z-10 transition-all duration-1500 ease-in-out pointer-events-none ${
-          phase === "initial" ? "backdrop-blur-md opacity-100" : "backdrop-blur-none opacity-0"
-        }`}
+        className={`absolute inset-0 bg-black/60 z-10 transition-all duration-1500 ease-in-out pointer-events-none ${phase === "initial" ? "backdrop-blur-md opacity-100" : "backdrop-blur-none opacity-0"
+          }`}
       />
 
       {/* Elegant Radial Light Highlight */}
       <div
-        className={`absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold/15 via-transparent to-black/90 z-10 transition-opacity duration-1500 pointer-events-none ${
-          phase === "initial" ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold/15 via-transparent to-black/90 z-10 transition-opacity duration-1500 pointer-events-none ${phase === "initial" ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       {/* Center Content Box (Fades out slowly when user clicks open) */}
       <div
-        className={`relative z-20 text-center px-2 py-6 max-w-7xl w-full mx-auto flex flex-col items-center justify-center transition-all duration-1500 ease-in-out ${
-          phase === "initial"
-            ? "opacity-100 translate-y-0 scale-100 animate-fade-in-1"
-            : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
-        }`}
+        className={`relative z-20 text-center px-2 py-6 max-w-7xl w-full mx-auto flex flex-col items-center justify-center transition-all duration-1500 ease-in-out ${phase === "initial"
+          ? "opacity-100 translate-y-0 scale-100 animate-fade-in-1"
+          : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
+          }`}
       >
         {/* Subtle Decorative Line / Icon */}
         <div className="flex items-center space-x-3 mb-2 text-gold-light/80">
