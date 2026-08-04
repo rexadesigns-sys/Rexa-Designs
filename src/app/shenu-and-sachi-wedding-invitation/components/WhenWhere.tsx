@@ -68,7 +68,7 @@ export default function WhenWhere() {
                 Kosgama
               </p>
               <a
-                href="https://maps.google.com/?q=Hotel+Refresh+Blue+Hikkaduwa"
+                href="https://maps.app.goo.gl/fBUn5bP1u4PMwnDV7?g_st=aw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#D4AF37] hover:text-gold-light transition-colors text-xs font-semibold tracking-[0.15em] uppercase flex items-center justify-center gap-1.5 mt-auto"
