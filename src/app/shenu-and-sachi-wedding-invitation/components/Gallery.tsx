@@ -12,7 +12,7 @@ export default function Gallery({ onImageClick }: GalleryProps) {
       alt: "Pre-Shoot Gallery 1",
     },
     {
-      src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%205.avif",
       alt: "Pre-Shoot Gallery 2",
     },
     {
@@ -20,11 +20,11 @@ export default function Gallery({ onImageClick }: GalleryProps) {
       alt: "Pre-Shoot Gallery 3",
     },
     {
-      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%202.avif",
+      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%204.avif",
       alt: "Pre-Shoot Gallery 4",
     },
     {
-      src: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=1200&auto=format&fit=crop",
+      src: "/shenu-and-sachi-wedding-invitation/proposal%20photo%202.avif",
       alt: "Pre-Shoot Gallery 5",
     },
   ];
