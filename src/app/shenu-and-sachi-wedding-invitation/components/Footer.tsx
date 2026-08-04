@@ -92,7 +92,7 @@ export default function Footer() {
         </h2>
 
         <p className="text-xs uppercase tracking-widest text-emerald-light mb-8 font-semibold">
-          October 15, 2026
+          September 4, 2026
         </p>
 
         <p className="text-[10px] text-gray-500 tracking-wider font-light">

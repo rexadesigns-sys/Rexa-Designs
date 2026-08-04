@@ -14,7 +14,7 @@ export default function Hero() {
 
   useEffect(() => {
     setIsMounted(true);
-    const targetDate = new Date("2026-10-15T09:00:00").getTime();
+    const targetDate = new Date("2026-09-04T09:00:00+05:30").getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -68,7 +68,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-base md:text-xl font-light tracking-[0.2em] mb-8 md:mb-12 text-champagne/90 opacity-0 animate-fade-in-2">
-          15 . 10 . 2026
+          04 . 09 . 2026
         </p>
 
         {/* Countdown */}
@@ -114,7 +114,7 @@ export default function Hero() {
         <div className="opacity-0 animate-fade-in-3" style={{ animationFillMode: "forwards" }}>
           <a
             href="#rsvp"
-            className="inline-block border border-gold text-gold font-medium tracking-[0.25em] text-xs md:text-sm px-8 py-3 hover:bg-emerald hover:text-white hover:border-emerald active:bg-emerald-light active:border-emerald-light transition-all duration-300 uppercase rounded cursor-pointer shadow-md hover:shadow-lg"
+            className="inline-block border border-gold text-gold font-medium tracking-[0.25em] text-xs md:text-sm px-8 py-3 hover:bg-gold hover:text-[#4A2A20] hover:border-gold active:bg-gold-light active:border-gold-light transition-all duration-300 uppercase rounded cursor-pointer shadow-md hover:shadow-lg"
           >
             RSVP
           </a>

@@ -93,7 +93,7 @@ export async function POST(request: Request) {
                     : ""
                 }
               </table>
-              <p style="text-align: center; margin-top: 30px; font-size: 12px; color: #888;">Sachira & Shenali Wedding Celebration • October 15, 2026</p>
+              <p style="text-align: center; margin-top: 30px; font-size: 12px; color: #888;">Sachira & Shenali Wedding Celebration • September 4, 2026</p>
             </div>
           `,
         });

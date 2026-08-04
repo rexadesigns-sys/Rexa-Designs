@@ -23,7 +23,7 @@ const madina = Great_Vibes({
 
 export const metadata: Metadata = {
   title: "Sachira & Shenali | Wedding Celebration",
-  description: "Join us in celebrating the wedding celebration of Sachira and Shenali on October 15, 2026.",
+  description: "Join us in celebrating the wedding celebration of Sachira and Shenali on September 4, 2026.",
   icons: {
     icon: "/shenu-and-sachi-wedding-invitation/favicon.svg",
   },
