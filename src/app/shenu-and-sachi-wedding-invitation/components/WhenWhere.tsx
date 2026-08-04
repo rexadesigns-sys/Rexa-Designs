@@ -9,7 +9,7 @@ export default function WhenWhere() {
           <span className="text-[#b89047] font-medium tracking-[0.25em] uppercase text-xs md:text-sm">
             The Details
           </span>
-          <h2 className="text-5xl md:text-6xl font-serif text-[#046307] mt-3 mb-4">
+          <h2 className="text-5xl md:text-6xl font-serif text-[#4A2A20] mt-3 mb-4">
             When &amp; Where
           </h2>
           <div className="w-16 h-px bg-gold mx-auto mt-6"></div>
@@ -26,9 +26,9 @@ export default function WhenWhere() {
               <span className="font-sans text-xs tracking-wider uppercase text-gray-500 mb-4 font-semibold">
                 Date
               </span>
-              <p className="text-gray-600 font-light text-base">Thursday</p>
+              <p className="text-gray-600 font-light text-base">Friday</p>
               <p className="font-serif italic text-4xl text-[#D4AF37] my-2">
-                October 15
+                September 04
               </p>
               <p className="text-gray-600 font-light text-base">2026</p>
             </div>
@@ -44,10 +44,10 @@ export default function WhenWhere() {
                 Time
               </span>
               <p className="font-serif italic text-4xl text-[#D4AF37] my-2 leading-snug">
-                9:00 am -<br />4:00 pm
+                9:00 am -<br />4:30 pm
               </p>
               <p className="text-gray-500 text-sm mt-4 font-light">
-                Poruwa Ceremony at 9:50 AM
+                Poruwa Ceremony at 9:15 AM
               </p>
             </div>
           </div>
@@ -62,10 +62,10 @@ export default function WhenWhere() {
                 Venue
               </span>
               <p className="font-serif text-2xl text-gray-800 mb-1 leading-tight font-medium">
-                Hotel Refresh Blue
+                Lavenro Garden Hotel
               </p>
               <p className="text-gray-600 font-light text-base mb-8">
-                Hikkaduwa
+                Kosgama
               </p>
               <a
                 href="https://maps.google.com/?q=Hotel+Refresh+Blue+Hikkaduwa"

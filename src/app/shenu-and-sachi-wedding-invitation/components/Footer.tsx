@@ -71,6 +71,8 @@ export default function Footer() {
                 <a
                   key={idx}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-gold transition-colors duration-300 flex items-center justify-center"
                   aria-label={s.name}
                 >
