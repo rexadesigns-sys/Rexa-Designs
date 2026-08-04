@@ -37,8 +37,8 @@ export default function Gallery({ onImageClick }: GalleryProps) {
           <span className="text-gold font-medium tracking-[0.2em] uppercase text-xs md:text-sm">
             Moments
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-emerald-dark mt-4 mb-6">
-            Our Pre-Shoot
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#4A2A20] mt-4 mb-6">
+            Our Proposal
           </h2>
           <div className="w-16 h-px bg-gold mx-auto"></div>
         </div>

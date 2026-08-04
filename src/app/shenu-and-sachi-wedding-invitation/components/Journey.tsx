@@ -28,10 +28,10 @@ export default function Journey({ onImageClick }: JourneyProps) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="text-gray-500 font-medium tracking-[0.25em] uppercase text-xs md:text-sm">
+          <span className="text-gold font-medium tracking-[0.2em] uppercase text-xs md:text-sm">
             Our Journey
           </span>
-          <h2 className="text-4xl md:text-5xl font-serif text-emerald-dark mt-3 mb-6">
+          <h2 className="text-4xl md:text-5xl font-serif text-[#4A2A20] mt-3 mb-6">
             How It All Began
           </h2>
           <div className="w-16 h-px bg-gold mx-auto"></div>

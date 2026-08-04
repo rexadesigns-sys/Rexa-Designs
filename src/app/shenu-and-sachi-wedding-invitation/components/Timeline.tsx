@@ -46,7 +46,7 @@ export default function Timeline() {
             <span className="text-gold font-medium tracking-[0.25em] uppercase text-xs md:text-sm">
               The Celebration
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif text-emerald-dark mt-3 mb-4">
+            <h2 className="text-4xl md:text-5xl font-serif text-[#4A2A20] mt-3 mb-4">
               Order of Events
             </h2>
             <div className="w-16 h-px bg-gold mx-auto mt-6"></div>

@@ -60,8 +60,8 @@ export default function RSVP() {
       <div className="max-w-3xl mx-auto px-4 relative z-10">
         <div className="bg-[#FAF9F6] rounded-2xl shadow-2xl p-8 md:p-14 border border-champagne/10">
           <div className="text-center mb-10">
-            <h2 className="text-4xl md:text-5xl font-serif text-emerald-dark mb-4">RSVP</h2>
-            <p className="text-gray-600 font-light text-sm">Kindly respond by September 15, 2026</p>
+            <h2 className="text-4xl md:text-5xl font-serif text-[#4A2A20] mb-4">RSVP</h2>
+            <p className="text-gray-600 font-light text-sm">Kindly respond by August 20, 2026</p>
             <div className="w-16 h-px bg-gold mx-auto mt-6"></div>
           </div>
 
@@ -118,11 +118,10 @@ export default function RSVP() {
                 </label>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <label
-                    className={`flex-1 flex items-center justify-center px-4 py-3.5 rounded border font-medium cursor-pointer transition-all duration-300 select-none ${
-                      attendance === "attending"
-                        ? "border-emerald bg-emerald/5 text-emerald-dark"
-                        : "border-gray-300 text-gray-600 hover:bg-gray-50"
-                    }`}
+                    className={`flex-1 flex items-center justify-center px-4 py-3.5 rounded border font-medium cursor-pointer transition-all duration-300 select-none ${attendance === "attending"
+                      ? "border-emerald bg-emerald/5 text-emerald-dark"
+                      : "border-gray-300 text-gray-600 hover:bg-gray-50"
+                      }`}
                   >
                     <input
                       type="radio"
@@ -135,11 +134,10 @@ export default function RSVP() {
                     Joyfully Accepts
                   </label>
                   <label
-                    className={`flex-1 flex items-center justify-center px-4 py-3.5 rounded border font-medium cursor-pointer transition-all duration-300 select-none ${
-                      attendance === "declining"
-                        ? "border-red-400 bg-red-50 text-red-700"
-                        : "border-gray-300 text-gray-600 hover:bg-gray-50"
-                    }`}
+                    className={`flex-1 flex items-center justify-center px-4 py-3.5 rounded border font-medium cursor-pointer transition-all duration-300 select-none ${attendance === "declining"
+                      ? "border-red-400 bg-red-50 text-red-700"
+                      : "border-gray-300 text-gray-600 hover:bg-gray-50"
+                      }`}
                   >
                     <input
                       type="radio"

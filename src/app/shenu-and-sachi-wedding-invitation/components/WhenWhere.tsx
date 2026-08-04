@@ -6,7 +6,7 @@ export default function WhenWhere() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <span className="text-[#b89047] font-medium tracking-[0.25em] uppercase text-xs md:text-sm">
+          <span className="text-gold font-medium tracking-[0.2em] uppercase text-xs md:text-sm">
             The Details
           </span>
           <h2 className="text-5xl md:text-6xl font-serif text-[#4A2A20] mt-3 mb-4">
