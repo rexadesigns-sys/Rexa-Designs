@@ -6,32 +6,32 @@ export default function Timeline() {
 
   const events = [
     {
-      time: "9:00 AM",
-      title: "Guest Arrival",
-      desc: "Welcome drinks & light bites in the garden courtyard",
-    },
-    {
-      time: "9:30 AM",
-      title: "Ceremony",
-      desc: "Exchange of Rings beneath the grand floral arch",
+      time: "9:15 AM",
+      title: "Poruwa Ceremony",
+      desc: "Two souls entwined as one, upon the sacred Poruwa",
     },
     {
       time: "11:00 AM",
+      title: "The Arrival of Two Souls",
+      desc: "Two hearts step forward as one, crossing the threshold into a shared forever",
+    },
+    {
+      time: "12:00 PM",
       title: "Cocktail Hour",
       desc: "Celebrate with craft cocktails & hors d'oeuvres",
     },
     {
-      time: "12:30 PM",
+      time: "1:00 PM",
       title: "Lunch",
       desc: "Delicious Sri Lankan cuisine served in the garden",
     },
     {
       time: "2:30 PM",
-      title: "Dance Floor Opens",
-      desc: "The couple's first dance followed by cake cutting",
+      title: "A Change of Grace, A Return as One",
+      desc: "Adorned anew, two souls return to continue their journey as one",
     },
     {
-      time: "3:30 PM",
+      time: "4:30 PM",
       title: "Couple Leaves",
       desc: "Ceremony concludes with the couple's departure",
     },
