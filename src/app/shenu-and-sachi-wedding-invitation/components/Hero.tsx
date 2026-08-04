@@ -63,7 +63,7 @@ export default function Hero() {
           We are getting married
         </p>
 
-        <h1 className="text-[3.5rem] sm:text-[5.5rem] md:text-[7.5rem] lg:text-[10rem] xl:text-[12.5rem] 2xl:text-[14rem] font-madina text-transparent bg-clip-text bg-gradient-to-r from-[#F7E7CE] via-[#D4AF37] to-[#F7E7CE] mb-4 md:mb-6 leading-[1.15] opacity-0 animate-scale-up-title whitespace-nowrap py-2 px-4 overflow-visible drop-shadow-[0_2px_20px_rgba(212,175,55,0.4)]">
+        <h1 className="text-[3.5rem] sm:text-[5.5rem] md:text-[7.5rem] lg:text-[10rem] xl:text-[12.5rem] 2xl:text-[14rem] font-madina text-transparent bg-clip-text bg-gradient-to-r from-[#F7E7CE] via-[#D4AF37] to-[#F7E7CE] mt-6 md:mt-12 mb-4 md:mb-6 leading-[1.15] opacity-0 animate-scale-up-title whitespace-nowrap py-2 px-4 overflow-visible drop-shadow-[0_2px_20px_rgba(212,175,55,0.4)]">
           Sachira <span className="font-light italic text-gold-light">&amp;</span> Shenali
         </h1>
 

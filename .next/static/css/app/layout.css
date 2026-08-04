@@ -1838,6 +1838,9 @@
   .text-\[3\.5rem\] {
     font-size: 3.5rem;
   }
+  .text-\[4\.5rem\] {
+    font-size: 4.5rem;
+  }
   .text-\[9px\] {
     font-size: 9px;
   }
@@ -1846,6 +1849,9 @@
   }
   .text-\[11px\] {
     font-size: 11px;
+  }
+  .text-\[13\.5rem\] {
+    font-size: 13.5rem;
   }
   .leading-\[1\.15\] {
     --tw-leading: 1.15;
@@ -2916,6 +2922,26 @@
       bottom: calc(var(--spacing) * 8);
     }
   }
+  .md\:mt-6 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 6);
+    }
+  }
+  .md\:mt-10 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 10);
+    }
+  }
+  .md\:mt-12 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 12);
+    }
+  }
+  .md\:mt-16 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 16);
+    }
+  }
   .md\:mb-2 {
     @media (width >= 48rem) {
       margin-bottom: calc(var(--spacing) * 2);
@@ -3158,9 +3184,19 @@
       font-size: 7.5rem;
     }
   }
+  .md\:text-\[8\.5rem\] {
+    @media (width >= 48rem) {
+      font-size: 8.5rem;
+    }
+  }
   .md\:text-\[10px\] {
     @media (width >= 48rem) {
       font-size: 10px;
+    }
+  }
+  .md\:text-\[17\.5rem\] {
+    @media (width >= 48rem) {
+      font-size: 17.5rem;
     }
   }
   .lg\:sticky {
@@ -3334,9 +3370,19 @@
       line-height: var(--tw-leading, var(--text-9xl--line-height));
     }
   }
+  .lg\:text-\[8rem\] {
+    @media (width >= 64rem) {
+      font-size: 8rem;
+    }
+  }
   .lg\:text-\[10rem\] {
     @media (width >= 64rem) {
       font-size: 10rem;
+    }
+  }
+  .lg\:text-\[12rem\] {
+    @media (width >= 64rem) {
+      font-size: 12rem;
     }
   }
   .xl\:col-span-4 {
@@ -3360,9 +3406,34 @@
       font-size: 12.5rem;
     }
   }
+  .xl\:text-\[15\.5rem\] {
+    @media (width >= 80rem) {
+      font-size: 15.5rem;
+    }
+  }
+  .xl\:text-\[20rem\] {
+    @media (width >= 80rem) {
+      font-size: 20rem;
+    }
+  }
+  .\32 xl\:text-\[10rem\] {
+    @media (width >= 96rem) {
+      font-size: 10rem;
+    }
+  }
+  .\32 xl\:text-\[12rem\] {
+    @media (width >= 96rem) {
+      font-size: 12rem;
+    }
+  }
   .\32 xl\:text-\[14rem\] {
     @media (width >= 96rem) {
       font-size: 14rem;
+    }
+  }
+  .\32 xl\:text-\[16rem\] {
+    @media (width >= 96rem) {
+      font-size: 16rem;
     }
   }
 }
