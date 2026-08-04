@@ -1055,6 +1055,9 @@
   .border-\[\#4A2A20\] {
     border-color: #4A2A20;
   }
+  .border-\[\#D4AF37\] {
+    border-color: #D4AF37;
+  }
   .border-\[\#FAF9F6\] {
     border-color: #FAF9F6;
   }
@@ -1220,14 +1223,35 @@
   .bg-\[\#5b7fff\] {
     background-color: #5b7fff;
   }
+  .bg-\[\#5f4c0f\] {
+    background-color: #5f4c0f;
+  }
+  .bg-\[\#7B5B4A\] {
+    background-color: #7B5B4A;
+  }
+  .bg-\[\#8d7219\] {
+    background-color: #8d7219;
+  }
   .bg-\[\#25D366\] {
     background-color: #25D366;
+  }
+  .bg-\[\#493b0d\] {
+    background-color: #493b0d;
+  }
+  .bg-\[\#725c13\] {
+    background-color: #725c13;
+  }
+  .bg-\[\#745a00\] {
+    background-color: #745a00;
   }
   .bg-\[\#7347f5\] {
     background-color: #7347f5;
   }
   .bg-\[\#D4AF37\] {
     background-color: #D4AF37;
+  }
+  .bg-\[\#D4AF37\]\/5 {
+    background-color: color-mix(in oklab, #D4AF37 5%, transparent);
   }
   .bg-\[\#D4AF37\]\/30 {
     background-color: color-mix(in oklab, #D4AF37 30%, transparent);
@@ -1237,6 +1261,12 @@
   }
   .bg-\[\#FF6900\] {
     background-color: #FF6900;
+  }
+  .bg-\[\#a36f43\] {
+    background-color: #a36f43;
+  }
+  .bg-\[\#deb086\] {
+    background-color: #deb086;
   }
   .bg-\[\#f8f9fb\] {
     background-color: #f8f9fb;
@@ -1931,6 +1961,9 @@
   .text-\[\#b89047\] {
     color: #b89047;
   }
+  .text-black {
+    color: var(--color-black);
+  }
   .text-champagne {
     color: var(--color-champagne);
   }
@@ -2474,6 +2507,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: #4866f2;
+      }
+    }
+  }
+  .hover\:bg-\[\#E5C158\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #E5C158;
       }
     }
   }

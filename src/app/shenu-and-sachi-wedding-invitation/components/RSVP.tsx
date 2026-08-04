@@ -53,7 +53,7 @@ export default function RSVP() {
   };
 
   return (
-    <section id="rsvp" className="py-24 md:py-32 bg-emerald-dark relative overflow-hidden">
+    <section id="rsvp" className="py-24 md:py-32 bg-[#745a00] relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-15 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] mix-blend-overlay pointer-events-none"></div>
 
@@ -119,7 +119,7 @@ export default function RSVP() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <label
                     className={`flex-1 flex items-center justify-center px-4 py-3.5 rounded border font-medium cursor-pointer transition-all duration-300 select-none ${attendance === "attending"
-                      ? "border-emerald bg-emerald/5 text-emerald-dark"
+                      ? "border-[#D4AF37] bg-[#D4AF37]/5 text-[#D4AF37]"
                       : "border-gray-300 text-gray-600 hover:bg-gray-50"
                       }`}
                   >
@@ -223,7 +223,7 @@ export default function RSVP() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 mt-6 rounded bg-emerald text-white font-medium tracking-wider hover:bg-emerald-light transition-colors shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                className="w-full py-4 mt-6 rounded bg-[#D4AF37] text-[#4A2A20] font-semibold tracking-wider hover:bg-[#E5C158] transition-colors shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
