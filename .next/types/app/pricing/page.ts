@@ -1,4 +1,4 @@
-// File: C:\Users\User\Documents\GitHub\Rexa-Designs\src\app\pricing\page.js
+// File: E:\RexaOfficial\Rexa Designs\Rexa Designs Website\Rexa Designs\Rexa-Designs\src\app\pricing\page.js
 import * as entry from '../../../../src/app/pricing/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

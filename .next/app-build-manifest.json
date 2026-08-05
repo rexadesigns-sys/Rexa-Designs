@@ -11,35 +11,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/portfolio/page": [
+    "/shenu-and-sachi-wedding-invitation/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/portfolio/page.js"
+      "static/css/app/shenu-and-sachi-wedding-invitation/layout.css",
+      "static/chunks/app/shenu-and-sachi-wedding-invitation/layout.js"
     ],
-    "/portfolio/[categorySlug]/page": [
+    "/shenu-and-sachi-wedding-invitation/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/portfolio/[categorySlug]/page.js"
-    ],
-    "/portfolio/[categorySlug]/[itemIndex]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/portfolio/[categorySlug]/[itemIndex]/page.js"
-    ],
-    "/contact/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/contact/page.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
-    ],
-    "/pricing/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pricing/page.js"
+      "static/chunks/app/shenu-and-sachi-wedding-invitation/page.js"
     ]
   }
 }

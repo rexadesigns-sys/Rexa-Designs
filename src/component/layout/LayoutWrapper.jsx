@@ -15,6 +15,12 @@ export default function LayoutWrapper({ children }) {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  const isWeddingRoute = pathname?.startsWith('/shenu-and-sachi-wedding-invitation');
+
+  if (isWeddingRoute) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-800">
       <Navbar

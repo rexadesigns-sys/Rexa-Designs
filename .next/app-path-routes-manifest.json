@@ -1,12 +1,15 @@
 {
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/shenu-and-sachi-wedding-invitation/api/rsvp/route": "/shenu-and-sachi-wedding-invitation/api/rsvp",
   "/_not-found/page": "/_not-found",
-  "/blog/[id]/page": "/blog/[id]",
-  "/about/page": "/about",
-  "/blog/page": "/blog",
-  "/contact/page": "/contact",
   "/page": "/",
+  "/contact/page": "/contact",
+  "/blog/page": "/blog",
+  "/about/page": "/about",
+  "/blog/[id]/page": "/blog/[id]",
   "/portfolio/[categorySlug]/[itemIndex]/page": "/portfolio/[categorySlug]/[itemIndex]",
-  "/portfolio/[categorySlug]/page": "/portfolio/[categorySlug]",
   "/pricing/page": "/pricing",
-  "/portfolio/page": "/portfolio"
+  "/portfolio/[categorySlug]/page": "/portfolio/[categorySlug]",
+  "/portfolio/page": "/portfolio",
+  "/shenu-and-sachi-wedding-invitation/page": "/shenu-and-sachi-wedding-invitation"
 }

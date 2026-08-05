@@ -87,6 +87,24 @@
       "regex": "^/pricing(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/pricing(?:/)?$"
+    },
+    {
+      "page": "/shenu-and-sachi-wedding-invitation",
+      "regex": "^/shenu\\-and\\-sachi\\-wedding\\-invitation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/shenu\\-and\\-sachi\\-wedding\\-invitation(?:/)?$"
+    },
+    {
+      "page": "/shenu-and-sachi-wedding-invitation/api/rsvp",
+      "regex": "^/shenu\\-and\\-sachi\\-wedding\\-invitation/api/rsvp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/shenu\\-and\\-sachi\\-wedding\\-invitation/api/rsvp(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
     }
   ],
   "dataRoutes": [],
