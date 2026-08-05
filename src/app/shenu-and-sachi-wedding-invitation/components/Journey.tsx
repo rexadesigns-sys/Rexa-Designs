@@ -60,21 +60,21 @@ export default function Journey({ onImageClick }: JourneyProps) {
           <p>
             Their story started in a simple way. Shenu needed help with a university project, and a friend connected her with Sachira.
             What began as an ordinary conversation slowly grew into something special over time. The real turning point came on the day
-            of one of Shenu's university exams. Sachira showed up to surprise her. After a warm, heartfelt conversation that day,
-            Sachira finally told Shenu how he felt he told her he loved her. Shenu's answer came on another day, when she went to a park
-            with a close friend and the friend's boyfriend. In that simple, joyful moment, Shenu told Sachira that she felt the same way.
+            of one of Shenu&apos;s university exams. Sachira showed up to surprise her. After a warm, heartfelt conversation that day,
+            Sachira finally told Shenu how he felt he told her he loved her. Shenu&apos;s answer came on another day, when she went to a park
+            with a close friend and the friend&apos;s boyfriend. In that simple, joyful moment, Shenu told Sachira that she felt the same way.
             That day, in that garden, was where their beautiful journey truly began.
 
           </p>
           <p>
             From then on, they grew closer with every new memory. Time passed, and one important day arrived the day their families met
-            each other for the first time. Sachira and his family visited Shenu's home, and both families gave their blessing to the
+            each other for the first time. Sachira and his family visited Shenu&apos;s home, and both families gave their blessing to the
             relationship. That day, their love was made official in the eyes of their families.
 
           </p>
           <p>
             After that, they began preparing for their wedding. But before that, Sachira wanted to create one more special memory for
-            Shenu a proposal. Instead of simply asking, "Will you marry me?", Sachira planned a beautiful moment to ask that question
+            Shenu a proposal. Instead of simply asking, &ldquo;Will you marry me?&rdquo;, Sachira planned a beautiful moment to ask that question
             the right way. Now, filled with love and hope for the future, Sachira and Shenu are ready to begin the next chapter of their
             lives as husband and wife.
 
